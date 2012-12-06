@@ -1,8 +1,8 @@
-package FusionCalssDiagram;
+package waterspace;
 
 import WaterWorld.WorldManager;
 import java.util.ArrayList;
-import FusionCalssDiagram.IWorldElement;
+import waterspace.IWorldElement;
 
 public class AbstractWorld {
 	private IWorldElement listElement;

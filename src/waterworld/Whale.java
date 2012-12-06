@@ -1,4 +1,4 @@
-package WaterWorld;
+package waterworld;
 
 import FusionCalssDiagram.IWorldElement;
 

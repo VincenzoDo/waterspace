@@ -1,4 +1,6 @@
-package FusionCalssDiagram;
+package spacelife;
+
+import waterspace.IWorldElement;
 
 public class BlackHole extends IWorldElement {
 	private BlackHole instance;

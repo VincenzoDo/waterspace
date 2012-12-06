@@ -1,4 +1,4 @@
-package FusionCalssDiagram;
+package spacelife;
 
 public class Martian {
 

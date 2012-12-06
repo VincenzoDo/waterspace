@@ -1,4 +1,6 @@
-package FusionCalssDiagram;
+package waterworld;
+
+import waterspace.AbstractWorld;
 
 public class WaterWorld extends AbstractWorld {
 	private Object maxIceSize;

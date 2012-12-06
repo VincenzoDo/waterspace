@@ -1,4 +1,4 @@
-package FusionCalssDiagram;
+package waterworld;
 
 public class WaterParams {
 	private Object nbOfShark;
