@@ -4,16 +4,12 @@ import waterspace.IWorldElement;
 
 public class Ice extends IWorldElement {
 
+    private WaterWorld world;
     private static Ice instance;
     private boolean[][] position;
-    public Ice unnamed_Ice_;
+    private boolean init = false;
 
     private Ice() {
-    }
-
-    private Ice(int x, int y) {
-        position = new boolean[x][y];
-
     }
 
     public Ice getInstance() {
@@ -23,18 +19,24 @@ public class Ice extends IWorldElement {
         return this.instance;
     }
 
-    public Ice getInstance(int x, int y) {
-        if (instance == null) {
-            instance = new Ice();
-        }
-        return this.instance;
-    }
-
     public void move() {
+        if(init){
+            
+        }
         throw new UnsupportedOperationException();
     }
 
     public void addIce(int x, int y) {
-        position[x][y] = true;
+        if (init) {
+            position[x][y] = true;
+        }
+    }
+
+    public void initIce(int x, int y, WaterWorld world) {
+        if(!init){
+            init=true;
+            this.world=world;
+            position = new boolean[x][y];
+        }
     }
 }

@@ -3,13 +3,15 @@ package waterworld;
 import waterspace.IWorldElement;
 
 public class Shark extends IWorldElement {
-
+    
+    private WaterWorld world;
     private boolean sex;
     private int sexCounter;
     private int eatCounter;
 
-    public Shark(boolean sex) {
+    public Shark(boolean sex, WaterWorld world) {
         this.sex = sex;
+        this.world=world;
     }
 
     public void breed() {
