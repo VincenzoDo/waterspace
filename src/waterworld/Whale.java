@@ -4,6 +4,8 @@ import waterspace.IWorldElement;
 
 public class Whale extends IWorldElement {
 
+    private WaterWorld world;
+    private boolean init=false;
     private static Whale instance;
 
     private Whale() {
@@ -22,5 +24,12 @@ public class Whale extends IWorldElement {
 
     public void move() {
         throw new UnsupportedOperationException();
+    }
+    
+    public void initWhale(WaterWorld world){
+        if(!init){
+            init=true;
+            this.world=world;
+        }
     }
 }
