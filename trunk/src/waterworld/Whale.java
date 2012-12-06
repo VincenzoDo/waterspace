@@ -3,22 +3,24 @@ package waterworld;
 import waterspace.IWorldElement;
 
 public class Whale extends IWorldElement {
-	private Whale instance;
-	public Whale unnamed_Whale_;
 
-	public void eat() {
-		throw new UnsupportedOperationException();
-	}
+    private static Whale instance;
 
-	private Whale() {
-		throw new UnsupportedOperationException();
-	}
+    private Whale() {
+    }
 
-	public Whale getInstance() {
-		return this.instance;
-	}
+    public void eat() {
+        throw new UnsupportedOperationException();
+    }
 
-	public void move() {
-		throw new UnsupportedOperationException();
-	}
+    public Whale getInstance() {
+        if (instance == null) {
+            instance = new Whale();
+        }
+        return this.instance;
+    }
+
+    public void move() {
+        throw new UnsupportedOperationException();
+    }
 }
