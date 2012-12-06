@@ -1,8 +1,8 @@
 package waterworld;
 
-import FusionCalssDiagram.IWorldElement;
+import waterspace.IWorldElement;
 
-public class Whale extends Creature1 {
+public class Whale extends IWorldElement {
 	private Whale instance;
 	public Whale unnamed_Whale_;
 

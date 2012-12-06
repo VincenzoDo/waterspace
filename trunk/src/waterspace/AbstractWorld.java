@@ -1,6 +1,6 @@
 package waterspace;
 
-import WaterWorld.WorldManager;
+import waterspace.WorldManager;
 import java.util.ArrayList;
 import waterspace.IWorldElement;
 
