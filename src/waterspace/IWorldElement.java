@@ -4,9 +4,10 @@ public class IWorldElement {
 	private int x;
 	private int y;
 	private int speed;
-	public AbstractWorld unnamed_AbstractWorld_;
+        
+	public AbstractWorld world;
 
-	public void getPosition() {
+	public int getPosition() {
 		throw new UnsupportedOperationException();
 	}
 

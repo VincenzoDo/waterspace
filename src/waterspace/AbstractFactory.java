@@ -2,7 +2,7 @@ package waterspace;
 //Silvin
 public class AbstractFactory {
 
-	public void createWorld() {
+	public AbstractWorld createWorld() {
 		throw new UnsupportedOperationException();
 	}
 

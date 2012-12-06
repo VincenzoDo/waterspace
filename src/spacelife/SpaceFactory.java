@@ -20,7 +20,7 @@ public class SpaceFactory extends AbstractFactory {
 		throw new UnsupportedOperationException();
 	}
 
-	public void createWorld() {
+	public SpaceWorld createWorld() {
 		throw new UnsupportedOperationException();
 	}
 }

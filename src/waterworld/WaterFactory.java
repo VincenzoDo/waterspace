@@ -4,23 +4,34 @@ import waterspace.AbstractFactory;
 
 public class WaterFactory extends AbstractFactory {
 
-	public void createShark() {
-		throw new UnsupportedOperationException();
-	}
+    private WaterParams params;
+    private WaterWorld world;
 
-	public void createPenguin() {
-		throw new UnsupportedOperationException();
-	}
+    public WaterFactory(WaterParams params) {
+        this.params = params;
+    }
 
-	public void createWhale() {
-		throw new UnsupportedOperationException();
-	}
+    public Shark createShark(boolean sex) {
+        return new Shark(sex, world);
+    }
 
-	public void createIce() {
-		throw new UnsupportedOperationException();
-	}
+    public Penguin createPenguin(boolean sex) {
+        return new Penguin(sex, world);
+    }
 
-	public void createWorld() {
-		throw new UnsupportedOperationException();
-	}
+    public Whale createWhale() {
+        throw new UnsupportedOperationException();
+    }
+
+    public void createIce() {
+        throw new UnsupportedOperationException();
+    }
+
+    public WaterWorld createWorld() {
+        return new WaterWorld(params);
+    }
+    
+    public void setWorld(WaterWorld world){
+        this.world=world;
+    }
 }
