@@ -1,8 +1,8 @@
 package waterworld;
 
-import FusionCalssDiagram.IWorldElement;
+import waterspace.IWorldElement;
 
-public class Shark extends Creature1 {
+public class Shark extends IWorldElement {
 	private boolean sex;
 	private int sexCounter;
 	private int eatCounter;

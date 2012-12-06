@@ -1,8 +1,8 @@
 package waterworld;
 
-import FusionCalssDiagram.IWorldElement;
+import waterspace.IWorldElement;
 
-public class Ice extends Creature1 {
+public class Ice extends IWorldElement {
 	private Ice instance;
 	private Object[][] position;
 	public Ice unnamed_Ice_;
