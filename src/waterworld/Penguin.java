@@ -1,16 +1,39 @@
 package waterworld;
+/*
+ * Vincenzo Do, Romain Monnard
+ * Penguin, a class to rapresent a penguin
+ * 
+ * Version 1
+ */
 
 import waterspace.IWorldElement;
 
 public class Penguin extends IWorldElement {
-	private boolean sex;
-	private int sexCounter;
 
-	public void breed() {
-		throw new UnsupportedOperationException();
-	}
+    //true male, false female
+    private boolean sex;
+    private int sexCounter;
 
-	public void move() {
-		throw new UnsupportedOperationException();
-	}
+    public Penguin(boolean sex) {
+        
+        this.sex = sex;
+        this.sexCounter = 0;
+
+    }
+
+    public void breed() {
+        throw new UnsupportedOperationException();
+    }
+
+    public void move() {
+        throw new UnsupportedOperationException();
+    }
+
+    public boolean getSex() {
+        return sex;
+    }
+
+    public int getSexCounter() {
+        return sexCounter;
+    }
 }
