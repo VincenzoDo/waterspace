@@ -1,4 +1,6 @@
-package FusionCalssDiagram;
+package spacelife;
+
+import waterspace.AbstractFactory;
 
 public class SpaceFactory extends AbstractFactory {
 

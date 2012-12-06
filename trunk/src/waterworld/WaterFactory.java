@@ -1,4 +1,6 @@
-package FusionCalssDiagram;
+package waterworld;
+
+import waterspace.AbstractFactory;
 
 public class WaterFactory extends AbstractFactory {
 

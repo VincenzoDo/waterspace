@@ -1,12 +1,17 @@
-package WaterWorld;
+package waterworld;
 
 import FusionCalssDiagram.IWorldElement;
 
-public class Penguin extends Creature1 {
+public class Shark extends Creature1 {
 	private boolean sex;
 	private int sexCounter;
+	private int eatCounter;
 
 	public void breed() {
+		throw new UnsupportedOperationException();
+	}
+
+	public void eat() {
 		throw new UnsupportedOperationException();
 	}
 

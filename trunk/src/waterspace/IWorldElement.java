@@ -1,4 +1,4 @@
-package FusionCalssDiagram;
+package waterspace;
 
 public class IWorldElement {
 	private int x;

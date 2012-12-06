@@ -1,4 +1,6 @@
-package FusionCalssDiagram;
+package spacelife;
+
+import waterspace.AbstractWorld;
 
 public class SpaceWorld extends AbstractWorld {
 
