@@ -2,6 +2,6 @@ package ui;
 
 
 
-public class nextStep__ extends Command {
+public class nextStep extends Command {
 	//public IHM instantiate;
 }
