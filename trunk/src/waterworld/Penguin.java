@@ -14,7 +14,8 @@ public class Penguin extends IWorldElement {
     //true male, false female
     private boolean sex;
     private int sexCounter;
-
+    
+    
     public Penguin(boolean sex, WaterWorld world) {
         this.world= world;
         this.sex = sex;
