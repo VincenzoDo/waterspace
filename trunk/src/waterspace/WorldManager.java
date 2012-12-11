@@ -1,26 +1,30 @@
 package waterspace;
 
 //Vince
-
 import java.util.Vector;
 import ui.Command;
 import waterspace.AbstractWorld;
 
 public class WorldManager {
-	private WorldManager _instance;
-	public WorldManager _unnamed_WorldManager_;
-	public Vector<Command> _unnamed_Command_ = new Vector<Command>();
-	public AbstractWorld _receive;
 
-	public void nextStep() {
-		throw new UnsupportedOperationException();
-	}
+    private WorldManager instance;
+   
+    public void nextStep() {
+        throw new UnsupportedOperationException();
+    }
 
-	private WorldManager() {
-		throw new UnsupportedOperationException();
-	}
+    private WorldManager() {
+       
+    }
 
-	private WorldManager getInstance() {
-		throw new UnsupportedOperationException();
-	}
+    public WorldManager getInstance() {
+        if (instance == null) {
+            instance = new WorldManager();
+        }
+        return this.instance;
+    }
+    
+    public void initWM(){
+        //initialisation of WM
+    }
 }
