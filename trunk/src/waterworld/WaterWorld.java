@@ -32,43 +32,86 @@ public class WaterWorld extends AbstractWorld {
 
     @Override
     public void nextStep() {
-		throw new UnsupportedOperationException();
         
-        // kill all starving sharks
+        // update counters AND kill all starving shark
+        for (IWorldElement elem : listElement) {
+            
+            elem.updateCounters();
+            
+            if(elem.getType() != ElementType.WATER_SHARK)
+                continue;
+            
+            Shark shark = (Shark)elem;
+            
+            if(shark.getEatCounter() == params.getStarving_each()){
+                shark.kill();
+            }
+            
+        }
         
-        //select random element
+        // select random element
+        IWorldElement elem = selectRandomElement();
         
-        //move element
+        // move element
+        elem.move();
         
         //selectRandomPreyNeighbour
+        IWorldElement prey = selectRandomPrey(elem);
         
-        // kill neighbour
+        if(prey != null){
+        // kill prey
+        killPreyElement(prey);
+        }
         
         //selectRandomNeighbour
+        IWorldElement neighbour = selectRandomNeightbour(elem);
         
-        //checkbredcounter
+        if(neighbour != null){
+        
+        //checkbreedcounter
+            
+        
         
             // create new element
-        
+        }
+            
 	}
     
     private void killStarvingShark() {
         throw new UnsupportedOperationException();
     }
 
-    private void selectRandomElement() {
+    private IWorldElement selectRandomElement() {
         throw new UnsupportedOperationException();
     }
 
-    private void selectRandomPrey() {
+    private IWorldElement selectRandomPrey(IWorldElement elem) {
+        throw new UnsupportedOperationException();
+    }
+    
+    private IWorldElement selectRandomNeightbour(IWorldElement elem) {
         throw new UnsupportedOperationException();
     }
 
+    /*
     private void placeElements() {
         throw new UnsupportedOperationException();
     }
-
-    private void killPreyElement() {
+*/
+    private void killPreyElement(IWorldElement prey) {
         throw new UnsupportedOperationException();
     }
+    
+    private boolean isReadyToBreed(IWorldElement elem){
+        
+        switch(elem.getType()){
+            case WATER_PENGUIN:
+                return true;
+            case WATER_SHARK:
+                return true;
+            default: return false;
+        }
+        
+    }
+    
 }
