@@ -26,4 +26,8 @@ public class IWorldElement {
         public void placeElement() {
                 throw new UnsupportedOperationException();
         }
+        
+        public void updateCounters(){
+        
+        }
 }
