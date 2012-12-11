@@ -39,4 +39,9 @@ public class Ice extends IWorldElement {
             position = new boolean[x][y];
         }
     }
+    
+    @Override
+    public void placeElement(){
+        
+    }
 }

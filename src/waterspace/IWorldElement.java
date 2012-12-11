@@ -22,4 +22,8 @@ public class IWorldElement {
 	public void getImage() {
 		throw new UnsupportedOperationException();
 	}
+        
+        public void placeElement() {
+                throw new UnsupportedOperationException();
+        }
 }

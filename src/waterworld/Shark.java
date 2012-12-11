@@ -49,4 +49,9 @@ public class Shark extends IWorldElement {
     public void setEatCounter(int eatCounter) {
         this.eatCounter = eatCounter;
     }
+    
+    @Override
+    public void placeElement(){
+        
+    }
 }
