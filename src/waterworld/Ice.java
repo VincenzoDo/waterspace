@@ -1,5 +1,6 @@
 package waterworld;
 
+import waterspace.ElementType;
 import waterspace.IWorldElement;
 
 public class Ice extends IWorldElement {
@@ -43,5 +44,9 @@ public class Ice extends IWorldElement {
     @Override
     public void placeElement(){
         
+    }
+    
+    public ElementType getElementType(){
+        return ElementType.WATER_ICE;
     }
 }
