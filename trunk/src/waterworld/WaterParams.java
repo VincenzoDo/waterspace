@@ -1,5 +1,7 @@
 package waterworld;
 
+import waterspace.ElementType;
+
 public class WaterParams {
 	private int nbOfShark;
 	private int nbOfPenguin;
@@ -15,6 +17,16 @@ public class WaterParams {
         this.starving_each = starving_each;
         this.world_height = world_height;
         this.world_width = world_width;
+    }
+    
+    public int getNbOfElement(ElementType type){
+        switch(type){
+            case WATER_ICE : return 1;
+            case WATER_PENGUIN : return getNbOfPenguin();
+            case WATER_SHARK : return getNbOfShark();
+            case WATER_WHALE : return 1;
+            default: return -1;
+        }
     }
     
     public int getNbOfShark() {

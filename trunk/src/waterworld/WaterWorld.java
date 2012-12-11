@@ -1,6 +1,8 @@
 package waterworld;
 
 import waterspace.AbstractWorld;
+import waterspace.ElementType;
+import waterspace.IWorldElement;
 
 public class WaterWorld extends AbstractWorld {
 
@@ -12,8 +14,19 @@ public class WaterWorld extends AbstractWorld {
         this.params = params;
         this.factory = factory;
         
-        // create elements via factory
-        // place elements
+        // create all elements and place in world
+        ElementType typeList[] = ElementType.values();
+        for (ElementType type : typeList) {
+            if(!type.toString().startsWith("WATER"))
+                continue;
+            
+            int nbOfElement = params.getNbOfElement(type);
+            for (int i = 0; i < nbOfElement; i++) {
+                IWorldElement elem = factory.createElement(type);
+                this.listElement.add(elem);
+                elem.placeElement();
+            }
+        }
         
     }
 
