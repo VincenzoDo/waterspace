@@ -19,7 +19,7 @@ public class IWorldElement {
             
         }
 
-	public void getType() {
+	public ElementType getType() {
 		throw new UnsupportedOperationException();
 	}
 
