@@ -28,7 +28,7 @@ public class WaterFactory extends AbstractFactory {
     }
 
     public WaterWorld createWorld() {
-        return new WaterWorld(params);
+        return new WaterWorld(params, this);
     }
     
     public void setWorld(WaterWorld world){
