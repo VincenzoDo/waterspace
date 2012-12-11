@@ -6,6 +6,7 @@ package waterworld;
  * Version 1
  */
 
+import waterspace.ElementType;
 import waterspace.IWorldElement;
 
 public class Penguin extends IWorldElement {
@@ -42,5 +43,9 @@ public class Penguin extends IWorldElement {
     @Override
     public void placeElement(){
         
+    }
+    
+    public ElementType getElementType(){
+        return ElementType.WATER_PENGUIN;
     }
 }

@@ -1,5 +1,6 @@
 package waterworld;
 
+import waterspace.ElementType;
 import waterspace.IWorldElement;
 
 public class Shark extends IWorldElement {
@@ -53,5 +54,10 @@ public class Shark extends IWorldElement {
     @Override
     public void placeElement(){
         
+    }
+    
+    
+    public ElementType getElementType(){
+        return ElementType.WATER_SHARK;
     }
 }
