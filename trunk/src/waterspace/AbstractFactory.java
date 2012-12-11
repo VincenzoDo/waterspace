@@ -6,7 +6,7 @@ public class AbstractFactory {
 		throw new UnsupportedOperationException();
 	}
 
-	public void createElements() {
+	public void createElement(ElementType type) {
 		throw new UnsupportedOperationException();
 	}
 }
