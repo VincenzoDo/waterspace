@@ -16,6 +16,30 @@ public class WaterParams {
         this.world_height = world_height;
         this.world_width = world_width;
     }
+    
+    public int getNbOfShark() {
+        return nbOfShark;
+    }
+
+    public int getNbOfPenguin() {
+        return nbOfPenguin;
+    }
+
+    public int getNbOfIce() {
+        return nbOfIce;
+    }
+
+    public int getStarving_each() {
+        return starving_each;
+    }
+
+    public int getWorld_height() {
+        return world_height;
+    }
+
+    public int getWorld_width() {
+        return world_width;
+    }
         
         
         
