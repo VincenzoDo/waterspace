@@ -10,6 +10,14 @@ public class IWorldElement {
 	public int getPosition() {
 		throw new UnsupportedOperationException();
 	}
+        
+        public void move(){
+            
+        }
+        
+        public void kill(){
+            
+        }
 
 	public void getType() {
 		throw new UnsupportedOperationException();

@@ -23,10 +23,12 @@ public class Whale extends IWorldElement {
         return this.instance;
     }
 
+    @Override
     public void move() {
         throw new UnsupportedOperationException();
     }
     
+   
     public void initWhale(WaterWorld world){
         if(!init){
             init=true;

@@ -28,8 +28,14 @@ public class Penguin extends IWorldElement {
         throw new UnsupportedOperationException();
     }
 
+    @Override
     public void move() {
         throw new UnsupportedOperationException();
+    }
+    
+    @Override
+    public void kill(){
+        
     }
 
     public boolean getSex() {
