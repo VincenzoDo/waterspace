@@ -57,6 +57,13 @@ public class Shark extends IWorldElement {
     }
     
     
+    @Override
+    public void updateCounters(){
+        this.sexCounter++;
+        this.eatCounter++;
+    }
+    
+    
     public ElementType getElementType(){
         return ElementType.WATER_SHARK;
     }

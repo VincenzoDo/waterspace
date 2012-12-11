@@ -45,6 +45,10 @@ public class Penguin extends IWorldElement {
         
     }
     
+    public void updateCounters(){
+        this.sexCounter++;
+    }
+    
     public ElementType getElementType(){
         return ElementType.WATER_PENGUIN;
     }
