@@ -32,4 +32,10 @@ public class Whale extends IWorldElement {
             this.world=world;
         }
     }
+    
+    
+    @Override
+    public void placeElement(){
+        
+    }
 }

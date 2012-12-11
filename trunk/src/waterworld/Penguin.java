@@ -38,4 +38,9 @@ public class Penguin extends IWorldElement {
     public int getSexCounter() {
         return sexCounter;
     }
+    
+    @Override
+    public void placeElement(){
+        
+    }
 }
