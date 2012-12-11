@@ -6,10 +6,11 @@ public class WaterWorld extends AbstractWorld {
 
     private int maxIceSize;
     private WaterParams params;
-    
-    
-    public WaterWorld(WaterParams params) {
+    private WaterFactory factory;
+
+    public WaterWorld(WaterParams params, WaterFactory factory) {
         this.params = params;
+        this.factory = factory;
         
         // create elements via factory
         // place elements
