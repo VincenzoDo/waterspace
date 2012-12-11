@@ -6,28 +6,55 @@ public class WaterWorld extends AbstractWorld {
 
     private int maxIceSize;
     private WaterParams params;
-
+    
+    
     public WaterWorld(WaterParams params) {
         this.params = params;
+        
+        // create elements via factory
+        // place elements
+        
     }
 
-    public void killStarvingShark() {
+    @Override
+    public void nextStep() {
+		throw new UnsupportedOperationException();
+        
+        // kill all starving sharks
+        
+        //select random element
+        
+        //move element
+        
+        //selectRandomPreyNeighbour
+        
+        // kill neighbour
+        
+        //selectRandomNeighbour
+        
+        //checkbredcounter
+        
+            // create new element
+        
+	}
+    
+    private void killStarvingShark() {
         throw new UnsupportedOperationException();
     }
 
-    public void selectRandomElement() {
+    private void selectRandomElement() {
         throw new UnsupportedOperationException();
     }
 
-    public void selectRandomPrey() {
+    private void selectRandomPrey() {
         throw new UnsupportedOperationException();
     }
 
-    public void placeElements() {
+    private void placeElements() {
         throw new UnsupportedOperationException();
     }
 
-    public void killPreyElement() {
+    private void killPreyElement() {
         throw new UnsupportedOperationException();
     }
 }
