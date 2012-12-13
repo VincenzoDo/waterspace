@@ -1,3 +1,4 @@
+package waterspace;
 
 public class Position {
   
@@ -10,11 +11,11 @@ public class Position {
   }
   
   public int getX(){
-    return x;
+    return xCor;
   }
   
   public int getY(){
-    return y;
+    return yCor;
   }
   
   public void setX(int x){
