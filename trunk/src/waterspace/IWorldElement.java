@@ -3,6 +3,11 @@ package waterspace;
 //Tarek
 import javax.swing.ImageIcon;
 
+/**
+ * <h1>IWorldElement</h1>
+ *
+ * @author Tarek Amiri
+ */
 public class IWorldElement {
 
     private Position pos;
