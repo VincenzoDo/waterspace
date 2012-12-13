@@ -1,41 +1,45 @@
 package waterspace;
+
 //Tarek
 public class IWorldElement {
-	private int x;
-	private int y;
-	private int speed;
-        
-	public AbstractWorld world;
+  private Position     pos;
+  private int          speed;
+  private ImageIcon    img;
+  private ElementType  type;
 
-	public int getPosition() {
-		throw new UnsupportedOperationException();
-	}
-        
-        public void move(){
-            
-        }
-        
-        public void kill(){
-            
-        }
+  public AbstractWorld world;
 
-	public ElementType getType() {
-		throw new UnsupportedOperationException();
-	}
+  public IWorldElement(Position pos, int speed, ImageIcon img,
+      ElementType type) {
+    this.pos = pos;
+    this.speed = speed;
+    this.img = img;
+    this.type = type;
+  }
 
-	public void getSpeed() {
-		throw new UnsupportedOperationException();
-	}
+  public int getPosition() {
+    return pos;
+  }
 
-	public void getImage() {
-		throw new UnsupportedOperationException();
-	}
-        
-        public void placeElement() {
-                throw new UnsupportedOperationException();
-        }
-        
-        public void updateCounters(){
-        
-        }
+  public ElementType getType() {
+    return type;
+  }
+
+  public void getSpeed() {
+    return speed;
+  }
+
+  public void getImage() {
+    return img;
+  }
+
+  /*
+  public void placeElement() {
+    throw new UnsupportedOperationException();
+  }
+  */
+
+  public void updateCounters() {
+
+  }
 }
