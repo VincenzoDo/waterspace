@@ -1,8 +1,12 @@
 package spacelife;
 
-public class Martian {
+import javax.swing.ImageIcon;
+import waterspace.ElementType;
+import waterspace.Position;
 
-	public Martian() {
-		throw new UnsupportedOperationException();
-	}
+public class Martian extends Alien {
+
+    public Martian(Position pos, int speed, ImageIcon img) {
+        super(pos, speed, img, ElementType.SPACE_MARTIAN);
+    }
 }
