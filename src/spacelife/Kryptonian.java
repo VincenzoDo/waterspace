@@ -6,8 +6,7 @@ import waterspace.Position;
 
 public class Kryptonian extends Alien {
 
-    public Kryptonian(Position pos, int speed, ImageIcon img,
-      ElementType type) {
-            super(pos, speed, img, type);
+    public Kryptonian(Position pos, int speed, ImageIcon img) {
+        super(pos, speed, img, ElementType.SPACE_KRYPTONIAN);
     }
 }
