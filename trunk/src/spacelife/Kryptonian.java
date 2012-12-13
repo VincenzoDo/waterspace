@@ -1,8 +1,13 @@
 package spacelife;
 
-public class Kryptonian {
+import javax.swing.ImageIcon;
+import waterspace.ElementType;
+import waterspace.Position;
 
-	public Kryptonian() {
-		throw new UnsupportedOperationException();
-	}
+public class Kryptonian extends Alien {
+
+    public Kryptonian(Position pos, int speed, ImageIcon img,
+      ElementType type) {
+            super(pos, speed, img, type);
+    }
 }
