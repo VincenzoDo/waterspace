@@ -1,6 +1,9 @@
 package waterspace;
 
 //Tarek
+
+import javax.swing.ImageIcon;
+
 public class IWorldElement {
   private Position     pos;
   private int          speed;
@@ -17,7 +20,7 @@ public class IWorldElement {
     this.type = type;
   }
 
-  public int getPosition() {
+  public Position getPosition() {
     return pos;
   }
 
@@ -25,11 +28,11 @@ public class IWorldElement {
     return type;
   }
 
-  public void getSpeed() {
+  public int getSpeed() {
     return speed;
   }
 
-  public void getImage() {
+  public ImageIcon getImage() {
     return img;
   }
 
