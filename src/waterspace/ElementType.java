@@ -21,5 +21,7 @@ public enum ElementType {
     SPACE_ASTEROID,
     SPACE_BLACKHOLE,
     SPACE_KRYPTONIAN,
-    SPACE_MARTIAN
+    SPACE_MARTIAN,
+    SPACE_PLANET,
+    NONE
 }
