@@ -34,12 +34,14 @@ public class IWorldElement {
   }
 
   /*
+   * Specialisation de WaterWorld
   public void placeElement() {
     throw new UnsupportedOperationException();
   }
-  */
+
 
   public void updateCounters() {
 
   }
+  */
 }
