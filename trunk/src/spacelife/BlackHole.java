@@ -2,7 +2,7 @@ package spacelife;
 
 import javax.swing.ImageIcon;
 import waterspace.ElementType;
-import waterspace.IWorldElement;
+import waterspace.WorldElement;
 import waterspace.Position;
 
 /**
@@ -12,7 +12,7 @@ import waterspace.Position;
  *
  * @author Tarek Amiri
  */
-public class BlackHole extends IWorldElement {
+public class BlackHole extends WorldElement {
 
     private static BlackHole uniqueInstance;
 

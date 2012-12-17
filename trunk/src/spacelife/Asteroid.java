@@ -3,10 +3,10 @@ package spacelife;
 import java.util.Random;
 import javax.swing.ImageIcon;
 import waterspace.ElementType;
-import waterspace.IWorldElement;
+import waterspace.WorldElement;
 import waterspace.Position;
 
-public class Asteroid extends IWorldElement {
+public class Asteroid extends WorldElement {
 
     Random r;
     private static final int LEFT = 0;
