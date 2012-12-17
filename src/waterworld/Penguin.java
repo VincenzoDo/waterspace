@@ -53,4 +53,9 @@ public class Penguin extends WaterElement {
     public ElementType getElementType(){
         return ElementType.WATER_PENGUIN;
     }
+
+    @Override
+    public void placeElement() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }

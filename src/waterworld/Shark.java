@@ -88,4 +88,9 @@ public class Shark extends WaterElement {
     public ElementType getElementType(){
         return ElementType.WATER_SHARK;
     }
+
+    @Override
+    public void placeElement() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }

@@ -40,4 +40,9 @@ public class Whale extends WaterElement {
     public ElementType getElementType(){
         return ElementType.WATER_WHALE;
     }
+
+    @Override
+    public void placeElement() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }
