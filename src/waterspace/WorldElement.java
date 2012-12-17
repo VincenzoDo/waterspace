@@ -8,7 +8,7 @@ import javax.swing.ImageIcon;
  *
  * @author Tarek Amiri
  */
-public class IWorldElement {
+public class WorldElement {
 
     private Position pos;
     private int speed;
@@ -19,7 +19,7 @@ public class IWorldElement {
     /**
      * This constructor is only used by sigleton classes !
      */
-    public IWorldElement() {
+    public WorldElement() {
     }
 
     /**
@@ -30,7 +30,7 @@ public class IWorldElement {
      * @param img Image to display for the Element
      * @param type Element Type
      */
-    public IWorldElement(Position pos, int speed, ImageIcon img,
+    public WorldElement(Position pos, int speed, ImageIcon img,
             ElementType type) {
         this.pos = pos;
         this.speed = speed;

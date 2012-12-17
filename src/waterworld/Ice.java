@@ -1,9 +1,9 @@
 package waterworld;
 
 import waterspace.ElementType;
-import waterspace.IWorldElement;
+import waterspace.WorldElement;
 
-public class Ice extends IWorldElement {
+public class Ice extends WaterElement {
 
     private WaterWorld world;
     private static Ice instance;
@@ -20,13 +20,14 @@ public class Ice extends IWorldElement {
         return this.instance;
     }
 
+    @Override
     public void move() {
         if(init){
             
         }
         throw new UnsupportedOperationException();
     }
-
+    
     public void addIce(int x, int y) {
         if (init) {
             position[x][y] = true;

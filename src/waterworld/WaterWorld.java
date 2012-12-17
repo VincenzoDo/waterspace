@@ -2,7 +2,7 @@ package waterworld;
 
 import waterspace.AbstractWorld;
 import waterspace.ElementType;
-import waterspace.IWorldElement;
+import waterspace.WorldElement;
 
 public class WaterWorld extends AbstractWorld {
 
@@ -22,7 +22,7 @@ public class WaterWorld extends AbstractWorld {
             
             int nbOfElement = params.getNbOfElement(type);
             for (int i = 0; i < nbOfElement; i++) {
-                IWorldElement elem = factory.createElement(type);
+                WaterElement elem = (WaterElement)factory.createElement(type);
                 this.listElement.add(elem);
                 elem.placeElement();
             }
@@ -34,14 +34,14 @@ public class WaterWorld extends AbstractWorld {
     public void nextStep() {
         
         // update counters AND kill all starving shark
-        for (IWorldElement elem : listElement) {
+        for (WorldElement elem : listElement) {
+            WaterElement waterElem = (WaterElement)elem;
+            waterElem.updateCounters();
             
-            elem.updateCounters();
-            
-            if(elem.getType() != ElementType.WATER_SHARK)
+            if(waterElem.getType() != ElementType.WATER_SHARK)
                 continue;
             
-            Shark shark = (Shark)elem;
+            Shark shark = (Shark)waterElem;
             
             if(shark.getEatCounter() == params.getStarving_each()){
                 shark.kill();
@@ -50,13 +50,13 @@ public class WaterWorld extends AbstractWorld {
         }
         
         // select random element
-        IWorldElement elem = selectRandomElement();
+        WaterElement waterElem = selectRandomElement();
         
         // move element
-        elem.move();
+        waterElem.move();
         
         //selectRandomPreyNeighbour
-        IWorldElement prey = selectRandomPrey(elem);
+        WorldElement prey = selectRandomPrey(waterElem);
         
         if(prey != null){
         // kill prey
@@ -64,7 +64,7 @@ public class WaterWorld extends AbstractWorld {
         }
         
         //selectRandomNeighbour
-        IWorldElement neighbour = selectRandomNeightbour(elem);
+        WorldElement neighbour = selectRandomNeightbour(waterElem);
         
         if(neighbour != null){
         
@@ -81,15 +81,15 @@ public class WaterWorld extends AbstractWorld {
         throw new UnsupportedOperationException();
     }
 
-    private IWorldElement selectRandomElement() {
+    private WaterElement selectRandomElement() {
         throw new UnsupportedOperationException();
     }
 
-    private IWorldElement selectRandomPrey(IWorldElement elem) {
+    private WaterElement selectRandomPrey(WorldElement elem) {
         throw new UnsupportedOperationException();
     }
     
-    private IWorldElement selectRandomNeightbour(IWorldElement elem) {
+    private WaterElement selectRandomNeightbour(WorldElement elem) {
         throw new UnsupportedOperationException();
     }
 
@@ -98,11 +98,11 @@ public class WaterWorld extends AbstractWorld {
         throw new UnsupportedOperationException();
     }
 */
-    private void killPreyElement(IWorldElement prey) {
+    private void killPreyElement(WorldElement prey) {
         throw new UnsupportedOperationException();
     }
     
-    private boolean isReadyToBreed(IWorldElement elem){
+    private boolean isReadyToBreed(WorldElement elem){
         
         switch(elem.getType()){
             case WATER_PENGUIN:

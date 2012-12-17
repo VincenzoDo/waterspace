@@ -3,10 +3,10 @@ package spacelife;
 import java.util.Random;
 import javax.swing.ImageIcon;
 import waterspace.ElementType;
-import waterspace.IWorldElement;
+import waterspace.WorldElement;
 import waterspace.Position;
 
-public class Planet extends IWorldElement {
+public class Planet extends WorldElement {
     
     private Alien population;
     Random r;

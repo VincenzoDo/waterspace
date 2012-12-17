@@ -2,11 +2,11 @@ package waterspace;
 //Silvin
 import waterspace.WorldManager;
 import java.util.ArrayList;
-import waterspace.IWorldElement;
+import waterspace.WorldElement;
 
 public class AbstractWorld {
 	public WorldManager receive;
-	public ArrayList<IWorldElement> listElement = new ArrayList<IWorldElement>();
+	public ArrayList<WorldElement> listElement = new ArrayList<WorldElement>();
 
     
 	public void nextStep() {

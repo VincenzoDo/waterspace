@@ -1,9 +1,9 @@
 package waterworld;
 
 import waterspace.ElementType;
-import waterspace.IWorldElement;
+import waterspace.WorldElement;
 
-public class Whale extends IWorldElement {
+public class Whale extends WaterElement {
 
     private WaterWorld world;
     private boolean init=false;

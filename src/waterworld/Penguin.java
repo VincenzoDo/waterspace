@@ -7,9 +7,9 @@ package waterworld;
  */
 
 import waterspace.ElementType;
-import waterspace.IWorldElement;
+import waterspace.WorldElement;
 
-public class Penguin extends IWorldElement {
+public class Penguin extends WaterElement {
 
     private WaterWorld world;
     //true male, false female

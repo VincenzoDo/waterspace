@@ -1,9 +1,9 @@
 package waterworld;
 
 import waterspace.ElementType;
-import waterspace.IWorldElement;
+import waterspace.WorldElement;
 
-public class Shark extends IWorldElement {
+public class Shark extends WaterElement {
     
     private WaterWorld world;
     private boolean sex;
