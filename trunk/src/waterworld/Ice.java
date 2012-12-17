@@ -46,4 +46,9 @@ public class Ice extends WaterElement {
     public ElementType getElementType(){
         return ElementType.WATER_ICE;
     }
+
+    @Override
+    public void placeElement() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }
