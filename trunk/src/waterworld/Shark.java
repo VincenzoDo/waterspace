@@ -1,7 +1,9 @@
 package waterworld;
 
+import java.util.Random;
 import waterspace.ElementType;
 import waterspace.WorldElement;
+import waterspace.Position;
 
 public class Shark extends WaterElement {
     
@@ -9,10 +11,27 @@ public class Shark extends WaterElement {
     private boolean sex;
     private int sexCounter;
     private int eatCounter;
+    private Random r;
+    private Whale whale;
 
     public Shark(boolean sex, WaterWorld world) {
+        this.r= new Random();
         this.sex = sex;
         this.world=world;
+    }
+    
+    
+    private int isWhaleNear(){
+        Position whalePos = whale.getInstance().getPosition();
+        int x = this.getPosition().getX();
+        int y = this.getPosition().getY();
+        Position up = new Position(x, y+1, null);
+        Position down = new Position(x, y-1, null);
+        Position left = new Position(x-1, y, null);
+        Position right = new Position(x+1, y, null);
+        return 0;
+        
+        
     }
 
     public void breed() {
@@ -25,12 +44,13 @@ public class Shark extends WaterElement {
 
     @Override
     public void move() {
-        throw new UnsupportedOperationException();
+       int direction = r.nextInt(5); //0 down, 1 up, 2 left, 3 right, 4 stay
+       whale.getInstance().getPosition();
     }
     
     @Override
     public void kill(){
-        
+        throw new UnsupportedOperationException();
     }
 
     public boolean getSex() {
@@ -57,12 +77,7 @@ public class Shark extends WaterElement {
         this.eatCounter = eatCounter;
     }
     
-    @Override
-    public void placeElement(){
-        
-    }
-    
-    
+
     @Override
     public void updateCounters(){
         this.sexCounter++;

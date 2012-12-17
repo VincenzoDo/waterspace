@@ -46,11 +46,6 @@ public class Penguin extends WaterElement {
         return sexCounter;
     }
     
-    @Override
-    public void placeElement(){
-        
-    }
-    
     public void updateCounters(){
         this.sexCounter++;
     }

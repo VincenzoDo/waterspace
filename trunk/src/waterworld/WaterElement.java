@@ -8,21 +8,30 @@ import waterspace.WorldElement;
 
 /**
  *
- * @author romain
+ * @author Vince
  */
-public abstract class WaterElement extends WorldElement {
+public class WaterElement extends WorldElement {
     
-    public abstract void placeElement();
-
-    public abstract void move();
+    public WaterElement(){
+        
+    }
     
-    public void breed(){
+    public void move(){
+        
     }
     
     public void kill(){
+        
     }
     
     public void updateCounters(){
+        
     }
+    
+    public void placeElement(){
+        
+    }
+  
+   
     
 }
