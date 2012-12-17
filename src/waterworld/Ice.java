@@ -42,10 +42,6 @@ public class Ice extends WaterElement {
         }
     }
     
-    @Override
-    public void placeElement(){
-        
-    }
     
     public ElementType getElementType(){
         return ElementType.WATER_ICE;
