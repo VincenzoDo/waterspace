@@ -1,19 +1,26 @@
 package waterworld;
 
+import java.util.Random;
 import waterspace.ElementType;
-import waterspace.WorldElement;
+import waterspace.Position;
 
 public class Whale extends WaterElement {
 
     private WaterWorld world;
     private boolean init=false;
     private static Whale instance;
+    private Random r;
+    private Position position;
 
     private Whale() {
     }
 
     public void eat() {
-        throw new UnsupportedOperationException();
+        // if a neighbour case contains an etabel element (shark)
+            //then eat it
+            //and remove the elt from the list
+        //else
+            //do nothing
     }
 
     public Whale getInstance() {
@@ -25,13 +32,30 @@ public class Whale extends WaterElement {
 
     @Override
     public void move() {
-        throw new UnsupportedOperationException();
+        int direction = r.nextInt(5);//0 down, 1 up, 2 left, 3 right, 4 stay
+        
+        //what if the position is already occupied?
+        switch(direction){
+            case 0:
+                this.position.moveDown();
+            case 1:
+                this.position.moveUp();
+            case 2:
+                this.position.moveLeft();
+            case 3:
+                this.position.moveRight();
+            default:
+                //do nothing
+        }
+        
+        
     }
     
    
     public void initWhale(WaterWorld world){
         if(!init){
             init=true;
+            r= new Random();
             this.world=world;
         }
     }
@@ -43,6 +67,9 @@ public class Whale extends WaterElement {
 
     @Override
     public void placeElement() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        //get a random case 
+        //check if it's already occupied
+            //choose another random case
+        //place the element
     }
 }
