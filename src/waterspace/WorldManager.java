@@ -8,6 +8,7 @@ import waterspace.AbstractWorld;
 
 public class WorldManager {
         public ArrayList<Command> listCommand;
+        public ArrayList<WorldElement> listElement;
         public Command cmd;
 	private static WorldManager _instance;
 	public AbstractWorld _receive;
@@ -24,7 +25,7 @@ public class WorldManager {
             listCommand.add(c);
 	}
 
-	private WorldManager getInstance() {
+	public static WorldManager getInstance() {
             if(_instance == null ){
                 _instance = new WorldManager();
             }
