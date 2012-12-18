@@ -8,7 +8,7 @@ import waterspace.AbstractWorld;
 
 public class WorldManager {
         public ArrayList<Command> listCommand;
-        public ArrayList<WorldElement> listElement;
+        public static ArrayList<WorldElement> listElement;
         public Command cmd;
 	private static WorldManager _instance;
 	public AbstractWorld _receive;

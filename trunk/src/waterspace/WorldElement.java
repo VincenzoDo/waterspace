@@ -43,6 +43,7 @@ public abstract class WorldElement {
         this.speed = speed;
         this.img = img;
         this.type = type;
+        WorldManager.listElement.add(this);
     }
     
     /**
