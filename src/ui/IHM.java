@@ -17,6 +17,7 @@ public class IHM extends JFrame{
     // --- Components - not private to have easy access
     JButton nextStep = new JButton("NextStep");
     ImageIcon[][] elements = new ImageIcon[10][10];
+    JLabel[][] images = new JLabel[10][10];
     private JPanel container = new JPanel();
     private JLabel ecran = new JLabel();
      // --- MVC
@@ -39,13 +40,22 @@ public class IHM extends JFrame{
         ecran.setPreferredSize(new Dimension(220, 20));
         // --- the main UI
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-
         this.setLocationRelativeTo(null);
         
+        // Add Icon of Element in the tab
         for(int i=0; i<vm.listElement.size() ; i++){
             WorldElement elt = vm.listElement.get(i);
-            elements[elt.getPosition().getX()][elt.getPosition().getY()]=elt.getImage(); 
+            int x = elt.getPosition().getX();
+            int y = elt.getPosition().getY();
+            elements[x][y]=elt.getImage();
+            images[x][y] = new JLabel(elements[x][y]);
+        }
+        
+        // Add Image to the JPanel
+        for(int i=0; i<images.length ; i++){
+            for(int j = 0 ; j<images[0].length ; j++){
+                panEcran.add(images[i][j]);
+            }
         }
         panEcran.add(ecran);
         panEcran.setBorder(BorderFactory.createLineBorder(Color.black));
