@@ -2,8 +2,8 @@ package spacelife;
 
 import javax.swing.ImageIcon;
 import waterspace.ElementType;
-import waterspace.WorldElement;
 import waterspace.Position;
+import waterspace.WorldElement;
 
 public class Asteroid extends WorldElement {
 

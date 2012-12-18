@@ -2,8 +2,8 @@ package spacelife;
 
 import javax.swing.ImageIcon;
 import waterspace.ElementType;
-import waterspace.WorldElement;
 import waterspace.Position;
+import waterspace.WorldElement;
 
 /**
  * <h1>BlackHole</h1> <p> Implementing Singleton Pattern: <ul> <li>To set the
