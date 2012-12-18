@@ -1,20 +1,27 @@
 package waterspace;
 
 //Tarek
+import java.util.Random;
 import javax.swing.ImageIcon;
 
 /**
- * <h1>IWorldElement</h1>
+ * <h1>WorldElement</h1>
  *
  * @author Tarek Amiri
  */
-public class WorldElement {
+public abstract class WorldElement {
 
     private Position pos;
     private int speed;
     private ImageIcon img;
     private ElementType type;
     public AbstractWorld world;
+    
+    Random r;
+    private static final int LEFT = 0;
+    private static final int RIGHT = 1;
+    private static final int UP = 2;
+    private static final int DOWN = 3;
 
     /**
      * This constructor is only used by sigleton classes !
@@ -36,6 +43,41 @@ public class WorldElement {
         this.speed = speed;
         this.img = img;
         this.type = type;
+    }
+    
+    /**
+     * Moves the World Element depending the speed 
+     * E.g.: (speed = 1 -> moves every tick)
+     *       (speed = 2 -> moves every second tick)
+     *       etc..
+     * @param tickNbr 
+     */
+    public void move(int tickNbr) {
+
+        //Check if it's time to move
+        if (speed != 0 && (tickNbr % speed) == 0) {
+
+            int direction = r.nextInt(4);
+
+            switch (direction) {
+
+                case LEFT:
+                    pos.moveLeft();
+                    break;
+                case RIGHT:
+                    pos.moveRight();
+                    break;
+                case UP:
+                    pos.moveUp();
+                    break;
+                case DOWN:
+                    pos.moveDown();
+                    break;
+
+            }
+
+        }
+
     }
 
     public Position getPosition() {

@@ -1,10 +1,10 @@
 package waterspace;
 
 /**
- * <h1>Postion A</h1> <p>Class to represent the position of an element on the
+ * <h1>Postion</h1> <p>Class to represent the position of an element on the
  * map with associated possible moves</p>
  *
- * @author Raiden
+ * @author Tarek Amiri
  */
 public class Position {
 
