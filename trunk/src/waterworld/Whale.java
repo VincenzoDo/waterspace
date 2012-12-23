@@ -66,10 +66,11 @@ public class Whale extends WaterElement {
     }
 
     @Override
-    public void placeElement() {
+    public boolean placeElement() {
         //get a random case 
         //check if it's already occupied
             //choose another random case
         //place the element
+        return false;
     }
 }
