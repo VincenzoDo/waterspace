@@ -31,7 +31,7 @@ public abstract class WaterElement extends WorldElement {
         
     }
     
-    public abstract void placeElement();
+    public abstract boolean placeElement();
   
    
     

@@ -13,11 +13,11 @@ public class Ice extends WaterElement {
     private Ice() {
     }
 
-    public Ice getInstance() {
+    public static Ice getInstance() {
         if (instance == null) {
             instance = new Ice();
         }
-        return this.instance;
+        return instance;
     }
 
     @Override
@@ -33,7 +33,11 @@ public class Ice extends WaterElement {
             position[x][y] = true;
         }
     }
-
+    
+    public boolean isIce(int x, int y){
+        return position[x][y];
+    }
+    
     public void initIce(int x, int y, WaterWorld world) {
         if(!init){
             init=true;
@@ -48,7 +52,7 @@ public class Ice extends WaterElement {
     }
 
     @Override
-    public void placeElement() {
+    public boolean placeElement() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }

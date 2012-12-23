@@ -55,7 +55,7 @@ public class Penguin extends WaterElement {
     }
 
     @Override
-    public void placeElement() {
+    public boolean placeElement() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }
