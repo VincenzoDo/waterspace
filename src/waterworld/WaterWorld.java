@@ -194,6 +194,12 @@ public class WaterWorld extends AbstractWorld {
         }
         
     }
+
+    public WaterParams getParams() {
+        return params;
+    }
+    
+    
     
     private boolean isNeightboor(WorldElement elem1, WorldElement elem2){
     
