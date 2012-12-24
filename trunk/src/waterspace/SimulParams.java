@@ -8,10 +8,17 @@ package waterspace;
  *
  * @author Raiden
  */
-public class SimulParams {
+public abstract class SimulParams {
     
-    private  int mapWidth = 50;
-    private  int mapHeight = 50;
+    private  int mapWidth;
+    private  int mapHeight;
+    
+    
+    public SimulParams(int mapWidth, int mapHeight){
+        this.mapHeight=mapHeight;
+        this.mapHeight= mapHeight;
+        
+    }
 
     public int getMapWidth() {
         return mapWidth;
