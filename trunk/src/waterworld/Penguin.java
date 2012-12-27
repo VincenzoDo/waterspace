@@ -19,17 +19,19 @@ public class Penguin extends WaterElement {
     private int sexCounter;
     private Random r;
     private Position position;
-    private WaterParams params = world.getParams();
+    private WaterParams params;
 
     public Penguin(boolean sex, WaterWorld world) {
         this.world = world;
         this.sex = sex;
         this.sexCounter = 0;
         this.r = new Random();
+        this.params = world.getParams();
     }
 
     public void breed() {
         //check on near case
+        
         //if there is a penguin
         boolean decision = r.nextBoolean();
         if (decision) {
@@ -108,7 +110,11 @@ public class Penguin extends WaterElement {
         int x = r.nextInt(params.getWorld_width());
         int y = r.nextInt(params.getWorld_height());
         //check position
-        this.position = new Position(x, y, params);
+        if(this.world.isCellFree(x, y)){
+            this.position = new Position(x, y, params);
+        } else {
+            placeElement();
+        }
         return true;
     }
 }
