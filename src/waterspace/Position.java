@@ -116,4 +116,14 @@ public class Position {
         setY(newY);
 
     }
+    
+    @Override 
+    public boolean equals(Object o){
+        if(o.getClass().isInstance(this)){
+            if(((Position)o).getX() == this.getX() && ((Position)o).getY() == this.getY()){
+                return true;
+            }
+        }
+        return false;
+    }
 }

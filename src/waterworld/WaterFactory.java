@@ -8,7 +8,6 @@ public class WaterFactory extends AbstractFactory {
     private WaterWorld world;
     //singletons
     private Whale whale;
-    private Ice ice;
 
     public WaterFactory(WaterParams params) {
         this.params = params;
@@ -27,7 +26,7 @@ public class WaterFactory extends AbstractFactory {
     }
 
     public Ice createIce() {
-        return ice.getInstance();
+        return new Ice(world);
     }
 
     public WaterWorld createWorld() {
