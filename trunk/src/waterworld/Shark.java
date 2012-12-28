@@ -100,7 +100,6 @@ public class Shark extends WaterElement {
                 //do nothing
             }
         } else { //whale is near need to go backwards
-            free = false;
 
             Position p = this.getPosition();
             //backwards movement
@@ -115,15 +114,15 @@ public class Shark extends WaterElement {
             } else {
                 //do nothing
             }
-
-            if (this.world.isCellFree(p.getX(), p.getY())) {
-                free = true;
-            } else { //no pother place to go
+            
+            direction = whaleP;
+            if (!this.world.isCellFree(p.getX(), p.getY())) {
+                //no pother place to go
                 direction = 4;
 
             }
 
-            switch (whaleP) { //still backwards
+            switch (direction) { //still backwards
                 case 0:
                     this.position.moveUp();
                 case 1:

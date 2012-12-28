@@ -11,84 +11,53 @@ public class Ice extends WaterElement {
 
     private WaterWorld world;
     private static Ice instance;
-    private ArrayList<Position> position;
+    private Position position;
     private boolean init = false;
     private WaterParams params = world.getParams();
     private Random r;
 
-    private Ice() {
-    }
-
-    public static Ice getInstance() {
-        if (instance == null) {
-            instance = new Ice();
-        }
-        return instance;
+    public Ice(WaterWorld world) {
+        this.world = world;
+        r = new Random();
     }
 
     @Override
     public void move() {
-        if(init){
-            
-        }
-        throw new UnsupportedOperationException();
-    }
-    
-    public void addIce(int x, int y) {
-        if (init) {
-            Position p = new Position(x, y, params);
-            for (Position position1 : position) {
-                if(position1.getX() != p.getX() && position1.getY() != p.getY()){
-                    continue;
-                } else {
-                    break;
-                }
-                
+        boolean free = false;
+        while (!free) {
+            int x= r.nextInt(params.getWorld_width());
+            int y= r.nextInt(params.getWorld_height());
+            if (this.world.isCellFree(x, y)) {
+                addIce(x, y);
+                free=true;
             }
-            this.position.add(p);
-        }
-    }
-    
-    public boolean isIce(int x, int y){
-        for (Position position1 : position) {
-                if(position1.getX() == x && position1.getY() == y){
-                    return true;
-                } 
-            }
-        return false;
-    }
-    
-    public void initIce(int x, int y, WaterWorld world) {
-        if(!init){
-            init=true;
-            this.world=world;
-            r = new Random();
-        }
-    }
-    
-    
-    public ElementType getElementType(){
-        return ElementType.WATER_ICE;
-    }
-    
-    @Override
-    public Position getPosition(){
-        if(!this.position.isEmpty()){
-            return this.position.get(0);
-        } else {
-            return null; //TODO null exception
+
         }
     }
 
-      @Override
+    
+
+    private void addIce(int x, int y) {
+        if (this.world.getIceCounter() < ((params.getWorld_height() * params.getWorld_width()) / 100) * 50) {
+            Position p = new Position(x, y, params);
+            WaterFactory factory = this.world.getFactory();
+            Ice ice = factory.createIce();
+            ice.setPos(p);
+        }
+
+    }
+
+    public ElementType getElementType() {
+        return ElementType.WATER_ICE;
+    }
+
+    @Override
     public boolean placeElement() {
         int x = r.nextInt(params.getWorld_width());
         int y = r.nextInt(params.getWorld_height());
         //check position
-        if(this.world.isCellFree(x, y)){
-            Position p=  new Position(x, y, params);
-            this.position = new ArrayList<Position>();
-            this.position.add(p);
+        if (this.world.isCellFree(x, y)) {
+            this.getPosition().setNewPosition(x, y);
         } else {
             placeElement();
         }

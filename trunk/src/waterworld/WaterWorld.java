@@ -1,5 +1,6 @@
 package waterworld;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 import waterspace.AbstractWorld;
@@ -13,11 +14,12 @@ public class WaterWorld extends AbstractWorld {
     private WaterParams params;
     private WaterFactory factory;
     private Random r;
+    private int iceCounter;
 
     public WaterWorld(WaterParams params, WaterFactory factory) {
         this.params = params;
         this.factory = factory;
-
+        this.iceCounter=0;
         this.r = new Random();
 
         // create all elements and place in world
@@ -30,6 +32,9 @@ public class WaterWorld extends AbstractWorld {
             int nbOfElement = params.getNbOfElement(type);
             for (int i = 0; i < nbOfElement; i++) {
                 WaterElement elem = (WaterElement) factory.createElement(type);
+                if(elem.getType() == ElementType.WATER_ICE){
+                    this.iceCounter++;
+                }
                 if (elem.placeElement()) {
                     this.listElement.add(elem);
                 }
@@ -63,7 +68,7 @@ public class WaterWorld extends AbstractWorld {
             Shark shark = (Shark) waterElem;
 
             if (shark.getEatCounter() == params.getStarving_each()) {
-                shark.kill();
+                killStarvingShark();
             }
 
         }
@@ -113,7 +118,6 @@ public class WaterWorld extends AbstractWorld {
             if (worldElement.getType() == ElementType.WATER_SHARK) {
                 Shark shark = (Shark) worldElement;
                 if (shark.getEatCounter() == 5) {
-                    shark.kill();
                     listElement.remove(worldElement);
                 }
             }
@@ -142,11 +146,10 @@ public class WaterWorld extends AbstractWorld {
 
         // the sharks eat only penguin in water
         if (elem.getType() == ElementType.WATER_SHARK) {
-            Ice ice = Ice.getInstance();
             for (WorldElement worldElement : listElement) {
                 if (worldElement.getType() == ElementType.WATER_PENGUIN) {
                     Position pos = worldElement.getPosition();
-                    if (isNeightboor(elem, worldElement) && !ice.isIce(pos.getX(), pos.getY())) {
+                    if (isNeightboor(elem, worldElement) && !isIce(pos)) {
                         return (WaterElement) worldElement;
                     }
                 }
@@ -201,5 +204,39 @@ public class WaterWorld extends AbstractWorld {
 
     public WaterParams getParams() {
         return params;
+    }
+    
+    
+    public boolean isIce(Position p){
+        ArrayList<Ice> ice = new ArrayList();
+        for (WorldElement creature : listElement) {
+            if(creature.getType()== ElementType.WATER_ICE){
+                if(creature.getPosition().equals(p)){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    
+    
+    public ArrayList<Shark> getSharks(){
+        ArrayList<Shark> sharks = new ArrayList();
+        for (WorldElement creature : listElement) {
+            if(creature.getType()== ElementType.WATER_SHARK){
+                sharks.add((Shark)creature);
+            }
+        }
+        return sharks;
+        
+    }
+    
+    public WaterFactory getFactory(){
+        return factory;
+    }
+    
+    
+    public int getIceCounter(){
+        return iceCounter;
     }
 }
