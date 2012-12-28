@@ -171,43 +171,18 @@ public class WaterWorld extends AbstractWorld {
         return null;
     }
 
-    /*
-     private void placeElements() {
-     throw new UnsupportedOperationException();
-     }
-     */
     private void killPreyElement(WorldElement prey) {
         ((WaterElement) prey).kill();
         listElement.remove(prey);
     }
-
-    private boolean isReadyToBreed(WorldElement elem) {
-
-        switch (elem.getType()) {
-            case WATER_PENGUIN:
-                return true;
-            case WATER_SHARK:
-                return true;
-            default:
-                return false;
-        }
-
-    }
-
-    public WaterParams getParams() {
-        return params;
-    }
-
-    private boolean isNeightboor(WorldElement elem1, WorldElement elem2) {
-
+    
+    private boolean isNeightboor(WorldElement elem1, WorldElement elem2){
         Position pos1 = elem1.getPosition();
         Position pos2 = elem2.getPosition();
-
-        if (pos1.getX() == pos2.getX() && Math.abs(pos1.getY() - pos2.getY()) <= 1) {
+        if(pos1.getX() == pos2.getX() && Math.abs(pos1.getY()-pos2.getY()) <= 1) {
             return true;
         }
-
-        if (pos1.getY() == pos2.getY() && Math.abs(pos1.getX() - pos2.getX()) <= 1) {
+        if(pos1.getY() == pos2.getY() && Math.abs(pos1.getX()-pos2.getX()) <= 1) {
             return true;
         }
         return false;
@@ -222,5 +197,9 @@ public class WaterWorld extends AbstractWorld {
             }
         }
         return true;
+    }
+
+    public WaterParams getParams() {
+        return params;
     }
 }
