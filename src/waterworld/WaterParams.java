@@ -10,8 +10,9 @@ public class WaterParams extends SimulParams {
 	private int starving_each;
 	private int world_height;
 	private int world_width;
+        private int sexCounter;
 
-    public WaterParams( int world_height, int world_width, int nbOfShark, int nbOfPenguin, int nbOfIce, int starving_each) {
+    public WaterParams( int world_height, int world_width, int nbOfShark, int nbOfPenguin, int nbOfIce, int starving_each, int sexCounter) {
         super(world_height,world_width);
         this.nbOfShark = nbOfShark;
         this.nbOfPenguin = nbOfPenguin;
@@ -19,6 +20,7 @@ public class WaterParams extends SimulParams {
         this.starving_each = starving_each;
         this.world_height = world_height;
         this.world_width = world_width;
+        this.sexCounter = sexCounter;
         
     }
     
@@ -56,6 +58,10 @@ public class WaterParams extends SimulParams {
         return world_width;
     }
         
+    
+    public int getSexCounter(){
+        return sexCounter;
+    }
         
         
 }

@@ -3,6 +3,7 @@ package waterworld;
 import java.util.Random;
 import waterspace.ElementType;
 import waterspace.Position;
+import waterspace.WorldElement;
 
 public class Whale extends WaterElement {
 
@@ -12,16 +13,31 @@ public class Whale extends WaterElement {
     private Random r;
     private Position position;
     private WaterParams params;
+    private boolean hasKilled;
+    private int eatCounter;
 
     private Whale() {
     }
+    
+    
+    @Override
+    public void kill(){
+        //selectRandomPreyNeighbour
+        WorldElement prey = this.world.selectRandomPrey(this);
+        if (prey != null) {
+            // kill prey
+            this.world.killPreyElement(prey);
+        }
+        
+        
+    }
 
+    @Override
     public void eat() {
-        // if a neighbour case contains an etabel element (shark)
-        //then eat it
-        //and remove the elt from the list
-        //else
-        //do nothing
+        if(hasKilled){
+            hasKilled= false;
+            eatCounter++;
+        }
     }
 
     public Whale getInstance() {
@@ -76,10 +92,12 @@ public class Whale extends WaterElement {
 
     public void initWhale(WaterWorld world) {
         if (!init) {
-            init = true;
-            r = new Random();
+            this.init = true;
+            this.r = new Random();
+            this.eatCounter=0;
             this.world = world;
             this.params = world.getParams();
+            this.hasKilled = false;
         }
     }
 
@@ -98,5 +116,10 @@ public class Whale extends WaterElement {
             placeElement();
         }
         return true;
+    }
+
+    @Override
+    public void breed() {
+        //no breed for whale
     }
 }

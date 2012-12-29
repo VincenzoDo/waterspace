@@ -9,7 +9,6 @@ package waterworld;
 import java.util.Random;
 import waterspace.ElementType;
 import waterspace.Position;
-import waterspace.WorldElement;
 
 public class Penguin extends WaterElement {
 
@@ -20,6 +19,7 @@ public class Penguin extends WaterElement {
     private Random r;
     private Position position;
     private WaterParams params;
+    private int eatCounter;
 
     public Penguin(boolean sex, WaterWorld world) {
         this.world = world;
@@ -27,15 +27,21 @@ public class Penguin extends WaterElement {
         this.sexCounter = 0;
         this.r = new Random();
         this.params = world.getParams();
+        this.eatCounter=0;
     }
 
     public void breed() {
-        //do something
+        WaterElement neighbour = this.world.selectRandomNeighbour(this);
 
-        //if there is a penguin
-        boolean decision = r.nextBoolean();
-        if (decision) {
-            //create new penguin
+        if (neighbour != null) {//found a mate
+            if (((Penguin) neighbour).getSexCounter() <= this.params.getSexCounter() && this.sexCounter <= this.params.getSexCounter()) {
+                this.sexCounter++;
+                int sexC = ((Penguin) neighbour).getSexCounter() + 1;
+                ((Penguin) neighbour).setSexCounter(sexC);
+                this.world.createNewborn(this);
+            }
+
+
         }
 
 
@@ -43,7 +49,6 @@ public class Penguin extends WaterElement {
 
     @Override
     public void move() {
-        boolean speed = r.nextBoolean(); //1 or 2 squares
         int direction = 0; //0 down, 1 up, 2 left, 3 right, 4 stay
         int isSharkNear = isSharkNear();
         boolean free = false;
@@ -58,23 +63,11 @@ public class Penguin extends WaterElement {
 
                 if (direction == 0) {
                     p.moveDown();
-                    if(speed){
-                        p.moveDown();
-                    }
                 } else if (direction == 1) {
-                    if(speed){
-                        p.moveUp();
-                    }
                     p.moveUp();
                 } else if (direction == 2) {
-                    if(speed){
-                        p.moveLeft();
-                    }
                     p.moveLeft();
                 } else if (direction == 3) {
-                    if(speed){
-                        p.moveRight();
-                    }
                     p.moveRight();
                 } else {
                     //do nothing
@@ -88,33 +81,13 @@ public class Penguin extends WaterElement {
             //check validity ALSO OF duble 
             switch (direction) {
                 case 0:
-                    if (speed) {
                         this.position.moveDown();
-                        this.position.moveDown();
-                    } else {
-                        this.position.moveDown();
-                    }
                 case 1:
-                    if (speed) {
                         this.position.moveUp();
-                        this.position.moveUp();
-                    } else {
-                        this.position.moveUp();
-                    }
                 case 2:
-                    if (speed) {
                         this.position.moveLeft();
-                        this.position.moveLeft();
-                    } else {
-                        this.position.moveLeft();
-                    }
                 case 3:
-                    if (speed) {
                         this.position.moveRight();
-                        this.position.moveRight();
-                    } else {
-                        this.position.moveRight();
-                    }
                 case 4:
                     return;
                 default:
@@ -126,23 +99,11 @@ public class Penguin extends WaterElement {
             //backwards movement
             if (isSharkNear == 0) {
                     p.moveDown();
-                    if(speed){
-                        p.moveDown();
-                    }
                 } else if (isSharkNear == 1) {
-                    if(speed){
-                        p.moveUp();
-                    }
                     p.moveUp();
                 } else if (isSharkNear == 2) {
-                    if(speed){
-                        p.moveLeft();
-                    }
                     p.moveLeft();
                 } else if (isSharkNear == 3) {
-                    if(speed){
-                        p.moveRight();
-                    }
                     p.moveRight();
                 } else {
                     //do nothing
@@ -157,33 +118,13 @@ public class Penguin extends WaterElement {
 
             switch (direction) {
                 case 0:
-                    if (speed) {
                         this.position.moveUp();
-                        this.position.moveUp();
-                    } else {
-                        this.position.moveUp();
-                    }
                 case 1:
-                    if (speed) {
                         this.position.moveDown();
-                        this.position.moveDown();
-                    } else {
-                        this.position.moveDown();
-                    }
                 case 2:
-                    if (speed) {
                         this.position.moveRight();
-                        this.position.moveRight();
-                    } else {
-                        this.position.moveRight();
-                    }
                 case 3:
-                    if (speed) {
                         this.position.moveLeft();
-                        this.position.moveLeft();
-                    } else {
-                        this.position.moveLeft();
-                    }
                 case 4:
                     return;
                 default:
@@ -244,11 +185,20 @@ public class Penguin extends WaterElement {
         int x = r.nextInt(params.getWorld_width());
         int y = r.nextInt(params.getWorld_height());
         //check position
-        if (this.world.isCellFree(x, y)) {
+        if (this.world.isCellFree(x, y) || this.world.isIce(new Position(x,y,null))) {
             this.position = new Position(x, y, params);
         } else {
             placeElement();
         }
         return true;
+    }
+
+    @Override
+    public void eat() {
+        eatCounter++;
+    }
+
+    private void setSexCounter(int sexC) {
+        this.sexCounter = sexC;
     }
 }
