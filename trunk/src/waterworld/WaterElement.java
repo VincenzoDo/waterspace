@@ -19,13 +19,11 @@ public abstract class WaterElement extends WorldElement {
     
     public abstract void move();
     
-    public void kill(){
-        
-    }
+    public abstract void kill();
     
-    public void breed(){
-        
-    }
+    public abstract void eat();
+    
+    public abstract void breed();
     
     public void updateCounters(){
         

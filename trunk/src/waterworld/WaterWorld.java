@@ -19,7 +19,7 @@ public class WaterWorld extends AbstractWorld {
     public WaterWorld(WaterParams params, WaterFactory factory) {
         this.params = params;
         this.factory = factory;
-        this.iceCounter=0;
+        this.iceCounter = 0;
         this.r = new Random();
 
         // create all elements and place in world
@@ -32,7 +32,7 @@ public class WaterWorld extends AbstractWorld {
             int nbOfElement = params.getNbOfElement(type);
             for (int i = 0; i < nbOfElement; i++) {
                 WaterElement elem = (WaterElement) factory.createElement(type);
-                if(elem.getType() == ElementType.WATER_ICE){
+                if (elem.getType() == ElementType.WATER_ICE) {
                     this.iceCounter++;
                 }
                 if (elem.placeElement()) {
@@ -77,40 +77,29 @@ public class WaterWorld extends AbstractWorld {
         WaterElement waterElem = selectRandomElement();
 
         // move element
+        if(waterElem.getType() ==  ElementType.WATER_PENGUIN && !isIce(waterElem.getPosition())){
+            waterElem.move();
+        }
         waterElem.move();
 
-        //selectRandomPreyNeighbour
-        WorldElement prey = selectRandomPrey(waterElem);
+        // element kill
+        waterElem.kill();
 
-        if (prey != null) {
-            // kill prey
-            killPreyElement(prey);
-        }
+        // element eat
+        waterElem.eat();
 
         if (waterElem.getType() == ElementType.WATER_PENGUIN || waterElem.getType() == ElementType.WATER_SHARK) {
-            //selectRandomNeighbour
-            WaterElement neighbour = selectRandomNeighbour(waterElem);
-
-            if (neighbour != null) {
-                int sexCounter = 0;
-
-                if (neighbour.getType() == ElementType.WATER_PENGUIN) {
-                    sexCounter = ((Penguin) neighbour).getSexCounter();
-                } else if (neighbour.getType() == ElementType.WATER_SHARK) {
-                    sexCounter = ((Shark) neighbour).getSexCounter();
-                }
-
-                if (sexCounter >= 5) { //wrong? on augmente le counter quand la creature se reproduit,
-                    WorldElement born = factory.createElement(neighbour.getType());
-                    if (((WaterElement) born).placeElement()) {
-                        listElement.add(born);
-                    }
-                }
-
-
-            }
+            // breed if possible
+            waterElem.breed();
 
         }
+
+
+
+
+
+
+
     }
 
     private void killStarvingShark() {
@@ -129,7 +118,7 @@ public class WaterWorld extends AbstractWorld {
         return (WaterElement) listElement.get(index);
     }
 
-    private WaterElement selectRandomPrey(WorldElement elem) {
+    public WaterElement selectRandomPrey(WorldElement elem) {
 
         Collections.shuffle(listElement);
 
@@ -160,7 +149,7 @@ public class WaterWorld extends AbstractWorld {
     }
 
     // For reproduction
-    private WaterElement selectRandomNeighbour(WorldElement elem) {
+    public WaterElement selectRandomNeighbour(WorldElement elem) {
         if (elem.getType() == ElementType.WATER_ICE || elem.getType() == ElementType.WATER_WHALE) {
             return null;
         }
@@ -174,18 +163,17 @@ public class WaterWorld extends AbstractWorld {
         return null;
     }
 
-    private void killPreyElement(WorldElement prey) {
-        ((WaterElement) prey).kill();
+    public void killPreyElement(WorldElement prey) {
         listElement.remove(prey);
     }
-    
-    private boolean isNeightboor(WorldElement elem1, WorldElement elem2){
+
+    public boolean isNeightboor(WorldElement elem1, WorldElement elem2) {
         Position pos1 = elem1.getPosition();
         Position pos2 = elem2.getPosition();
-        if(pos1.getX() == pos2.getX() && Math.abs(pos1.getY()-pos2.getY()) <= 1) {
+        if (pos1.getX() == pos2.getX() && Math.abs(pos1.getY() - pos2.getY()) <= 1) {
             return true;
         }
-        if(pos1.getY() == pos2.getY() && Math.abs(pos1.getX()-pos2.getX()) <= 1) {
+        if (pos1.getY() == pos2.getY() && Math.abs(pos1.getX() - pos2.getX()) <= 1) {
             return true;
         }
         return false;
@@ -205,38 +193,57 @@ public class WaterWorld extends AbstractWorld {
     public WaterParams getParams() {
         return params;
     }
-    
-    
-    public boolean isIce(Position p){
+
+    public boolean isIce(Position p) {
         ArrayList<Ice> ice = new ArrayList();
         for (WorldElement creature : listElement) {
-            if(creature.getType()== ElementType.WATER_ICE){
-                if(creature.getPosition().equals(p)){
+            if (creature.getType() == ElementType.WATER_ICE) {
+                if (creature.getPosition().equals(p)) {
                     return true;
                 }
             }
         }
         return false;
     }
-    
-    
-    public ArrayList<Shark> getSharks(){
+
+    public ArrayList<Shark> getSharks() {
         ArrayList<Shark> sharks = new ArrayList();
         for (WorldElement creature : listElement) {
-            if(creature.getType()== ElementType.WATER_SHARK){
-                sharks.add((Shark)creature);
+            if (creature.getType() == ElementType.WATER_SHARK) {
+                sharks.add((Shark) creature);
             }
         }
         return sharks;
-        
+
     }
-    
-    public WaterFactory getFactory(){
+
+    public WaterFactory getFactory() {
         return factory;
     }
-    
-    
-    public int getIceCounter(){
+
+    public int getIceCounter() {
         return iceCounter;
+    }
+
+    public void createNewborn(WorldElement type) {
+        WorldElement born = factory.createElement(type.getType());
+        if (born.getType() == ElementType.WATER_PENGUIN) {
+            Collections.shuffle(listElement);
+            Position p = null;
+            for (WorldElement worldElement : listElement) {
+                if (worldElement.getType() == ElementType.WATER_ICE) {
+                    p = worldElement.getPosition();
+                    break;
+                } else {
+                    continue;
+                }
+
+            }
+            born.setPos(p);
+        } else {
+            if (((WaterElement) born).placeElement()) {
+                listElement.add(born);
+            }
+        }
     }
 }

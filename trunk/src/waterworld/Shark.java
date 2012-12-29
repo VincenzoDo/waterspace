@@ -2,8 +2,8 @@ package waterworld;
 
 import java.util.Random;
 import waterspace.ElementType;
-import waterspace.WorldElement;
 import waterspace.Position;
+import waterspace.WorldElement;
 
 public class Shark extends WaterElement {
 
@@ -15,12 +15,14 @@ public class Shark extends WaterElement {
     private Whale whale;
     private WaterParams params;
     private Position position;
+    private boolean hasKilled;
 
     public Shark(boolean sex, WaterWorld world) {
         this.r = new Random();
         this.sex = sex;
         this.world = world;
         params = world.getParams();
+        this.hasKilled=false;
     }
 
     private int isWhaleNear() {
@@ -49,11 +51,28 @@ public class Shark extends WaterElement {
     }
 
     public void breed() {
-        throw new UnsupportedOperationException();
+        WaterElement neighbour = this.world.selectRandomNeighbour(this);
+
+        if (neighbour != null) {//found a mate
+            if (((Shark) neighbour).getSexCounter() <= this.params.getSexCounter() && this.sexCounter <= this.params.getSexCounter()) {
+                this.sexCounter++;
+                int sexC = ((Shark) neighbour).getSexCounter() + 1;
+                ((Shark) neighbour).setSexCounter(sexC);
+                this.world.createNewborn(this);
+            }
+
+
+        }
+
+
+
     }
 
     public void eat() {
-        throw new UnsupportedOperationException();
+        if(hasKilled){
+            hasKilled=false;
+            eatCounter++;
+        }
     }
 
     @Override
@@ -114,7 +133,7 @@ public class Shark extends WaterElement {
             } else {
                 //do nothing
             }
-            
+
             direction = whaleP;
             if (!this.world.isCellFree(p.getX(), p.getY())) {
                 //no pother place to go
@@ -139,7 +158,13 @@ public class Shark extends WaterElement {
 
     @Override
     public void kill() {
-        throw new UnsupportedOperationException();
+                //selectRandomPreyNeighbour
+        WorldElement prey = this.world.selectRandomPrey(this);
+        if (prey != null) {
+            // kill prey
+            this.world.killPreyElement(prey);
+            hasKilled= true;
+        }
     }
 
     public boolean getSex() {
@@ -168,8 +193,8 @@ public class Shark extends WaterElement {
 
     @Override
     public void updateCounters() {
-        this.sexCounter++;
-        this.eatCounter++;
+        this.sexCounter--;
+        this.eatCounter--;
     }
 
     public ElementType getElementType() {
