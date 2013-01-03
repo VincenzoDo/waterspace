@@ -12,21 +12,23 @@ public class Shark extends WaterElement {
     private int sexCounter;
     private int eatCounter;
     private Random r;
-    private Whale whale;
     private WaterParams params;
-    private Position position;
     private boolean hasKilled;
 
-    public Shark(boolean sex, WaterWorld world) {
+    public Shark(boolean sex, WaterWorld world, Position pos, ElementType type) {
+        super(pos, type);
+        this.setType(type);
+        this.setPos(pos);
+        this.setImg("/image/shark.png");
         this.r = new Random();
         this.sex = sex;
         this.world = world;
         params = world.getParams();
-        this.hasKilled=false;
+        this.hasKilled = false;
     }
 
     private int isWhaleNear() {
-        Position whalePos = whale.getInstance().getPosition();
+        Position whalePos = Whale.getInstance().getPosition();
         int x = this.getPosition().getX();
         int y = this.getPosition().getY();
         Position up = new Position(x, y + 1, null);
@@ -69,58 +71,66 @@ public class Shark extends WaterElement {
     }
 
     public void eat() {
-        if(hasKilled){
-            hasKilled=false;
-            eatCounter++;
+        if (hasKilled) {
+            hasKilled = false;
+            eatCounter--;
         }
     }
 
     @Override
     public void move() {
+        System.out.println("moving shark in pos: " + this.getPosition().getX() + ":" + this.getPosition().getY());
         boolean free = false;
+        boolean noPlace = false;
         int direction = 0;
         int whaleP = isWhaleNear();
-
+        System.out.println("whale is near: " + whaleP);
+        Position p = null;
         if (whaleP == -1) {
 
             while (!free) {
 
                 direction = r.nextInt(5);//0 down, 1 up, 2 left, 3 right, 4 stay
 
-                Position p = this.getPosition();
+                System.out.println("Direction is :" + direction);
 
-                if (direction == 0) {
+                p = new Position(this.getPosition().getX(), this.getPosition().getY(), params);
+
+                System.out.println("TEST POS: " + p.getX() + ":" + p.getY());
+                if (direction == 0 && this.getPosition().getY() > 0) {
                     p.moveDown();
-                } else if (direction == 1) {
+                    System.out.println("TEST POS AF: " + p.getX() + ":" + p.getY());
+                } else if (direction == 1 && this.getPosition().getY() < params.getMapHeight()) {
                     p.moveUp();
-                } else if (direction == 2) {
+                    System.out.println("TEST POS AF: " + p.getX() + ":" + p.getY());
+                } else if (direction == 2 && this.getPosition().getX() > 0) {
                     p.moveLeft();
-                } else if (direction == 3) {
+                    System.out.println("TEST POS AF: " + p.getX() + ":" + p.getY());
+                } else if (direction == 3 && this.getPosition().getX() < params.getMapHeight()) {
                     p.moveRight();
+                    System.out.println("TEST POS AF: " + p.getX() + ":" + p.getY());
                 } else {
-                    //do nothing
+                    noPlace = true;
+                }
+                System.out.println("Check if it's free");
+                if (!noPlace) {
+                    if (this.world.isCellFree(p.getX(), p.getY()) && !this.world.isIce(p)) {
+                        free = true;
+                        System.out.println("Cell is free");
+                    }
+                } else {
+                    free = true;
+                    noPlace = false;
                 }
 
-                if (this.world.isCellFree(p.getX(), p.getY())) {
-                    free = true;
-                }
             }
 
-            switch (direction) {
-                case 0:
-                    this.position.moveDown();
-                case 1:
-                    this.position.moveUp();
-                case 2:
-                    this.position.moveLeft();
-                case 3:
-                    this.position.moveRight();
-                default:
-                //do nothing
+            if (p != null) {
+                this.getPosition().setNewPosition(p.getX(), p.getY());
             }
         } else { //whale is near need to go backwards
 
-            Position p = this.getPosition();
+            p = this.getPosition();
             //backwards movement
             if (whaleP == 0) {
                 p.moveUp();
@@ -135,35 +145,26 @@ public class Shark extends WaterElement {
             }
 
             direction = whaleP;
-            if (!this.world.isCellFree(p.getX(), p.getY())) {
+            if (!this.world.isCellFree(p.getX(), p.getY()) && !this.world.isIce(p)) {
                 //no pother place to go
                 direction = 4;
 
             }
 
-            switch (direction) { //still backwards
-                case 0:
-                    this.position.moveUp();
-                case 1:
-                    this.position.moveDown();
-                case 2:
-                    this.position.moveRight();
-                case 3:
-                    this.position.moveLeft();
-                default:
-                //do nothing
+            if (p != null) {
+                this.getPosition().setNewPosition(p.getX(), p.getY());
             }
         }
     }
 
     @Override
     public void kill() {
-                //selectRandomPreyNeighbour
+        //selectRandomPreyNeighbour
         WorldElement prey = this.world.selectRandomPrey(this);
         if (prey != null) {
             // kill prey
             this.world.killPreyElement(prey);
-            hasKilled= true;
+            hasKilled = true;
         }
     }
 
@@ -193,8 +194,7 @@ public class Shark extends WaterElement {
 
     @Override
     public void updateCounters() {
-        this.sexCounter--;
-        this.eatCounter--;
+        this.eatCounter++;
     }
 
     public ElementType getElementType() {
@@ -203,13 +203,15 @@ public class Shark extends WaterElement {
 
     @Override
     public boolean placeElement() {
-        int x = r.nextInt(params.getWorld_width());
-        int y = r.nextInt(params.getWorld_height());
-        //check position
-        if (this.world.isCellFree(x, y)) {
-            this.position = new Position(x, y, params);
-        } else {
-            placeElement();
+        boolean found = false;
+        while (!found) {
+            int x = r.nextInt(params.getWorld_width());
+            int y = r.nextInt(params.getWorld_height());
+            //check position
+            if (this.world.isCellFree(x, y) && !this.world.isIce(new Position(x, y, params))) {
+                this.setPos(new Position(x, y, params));
+                found = true;
+            }
         }
         return true;
     }

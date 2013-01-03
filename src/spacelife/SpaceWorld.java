@@ -1,5 +1,6 @@
 package spacelife;
 
+import ui.Command;
 import waterspace.AbstractWorld;
 
 public class SpaceWorld extends AbstractWorld {
@@ -27,4 +28,9 @@ public class SpaceWorld extends AbstractWorld {
 	public void selectNextElement() {
 		throw new UnsupportedOperationException();
 	}
+
+    @Override
+    public Command nextStep() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }

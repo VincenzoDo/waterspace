@@ -1,45 +1,42 @@
 package waterworld;
 
 import waterspace.AbstractFactory;
+import waterspace.ElementType;
+import waterspace.Position;
 
 public class WaterFactory extends AbstractFactory {
     
     private WaterParams params;
     private WaterWorld world;
-    //singletons
-    private Whale whale;
     private boolean genderP;
     private boolean genderS;
+    private Position pos;
     
-    public WaterFactory(WaterParams params) {
+    public WaterFactory(WaterParams params, WaterWorld world) {
         this.params = params;
         this.genderP= false;
         this.genderS= true;
+        this.world=world;
+        this.pos = new Position(0,0,params);
     }
 
     public Shark createShark() {
         this.genderS = !genderS;
-        return new Shark(genderS, world);
+        return new Shark(genderS, world,pos, ElementType.WATER_SHARK);
     }
 
     public Penguin createPenguin() {
         this.genderP = !genderP;
-        return new Penguin(genderP, world);
+        return new Penguin(genderP, world, pos, ElementType.WATER_PENGUIN);
     }
 
     public Whale createWhale() {
-        return whale.getInstance();
+        return Whale.getInstance();
     }
 
     public Ice createIce() {
-        return new Ice(world);
+        return new Ice(world, pos , ElementType.WATER_ICE);
     }
 
-    public WaterWorld createWorld() {
-        return new WaterWorld(params, this);
-    }
-    
-    public void setWorld(WaterWorld world){
-        this.world=world;
-    }
+
 }

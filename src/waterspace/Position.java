@@ -42,9 +42,11 @@ public class Position {
      */
     public void setX(int x) {
         if (x < 0) {
-            xCor = 0;
-        } else if (x > params.getMapWidth()) {
-            xCor = params.getMapWidth();
+            this.xCor = 0;
+        } else if (x > params.getMapWidth()-1) {
+            this.xCor = params.getMapWidth()-1;
+        } else {
+            this.xCor=x;
         }
     }
 
@@ -58,9 +60,11 @@ public class Position {
     public void setY(int y) {
 
         if (y < 0) {
-            yCor = 0;
-        } else if (y > params.getMapHeight()) {
-            yCor = params.getMapHeight();
+            this.yCor = 0;
+        } else if (y > params.getMapHeight() -1) {
+            this.yCor = params.getMapHeight() -1;
+        }else {
+            this.yCor=y;
         }
     }
 
@@ -72,8 +76,8 @@ public class Position {
      */
     public void setNewPosition(int x, int y) {
 
-        setX(x);
-        setY(y);
+        this.setX(x);
+        this.setY(y);
 
     }
 
@@ -82,8 +86,9 @@ public class Position {
      */
     public void moveLeft() {
 
-        int newX = xCor - 1;
-        setX(newX);
+        int newX = this.xCor - 1;
+        this.setX(newX);
+        
 
     }
 
@@ -92,8 +97,8 @@ public class Position {
      */
     public void moveRight() {
 
-        int newX = xCor + 1;
-        setX(newX);
+        int newX = this.xCor + 1;
+        this.setX(newX);
 
     }
 
@@ -102,8 +107,8 @@ public class Position {
      */
     public void moveUp() {
 
-        int newY = yCor + 1;
-        setY(newY);
+        int newY = this.yCor + 1;
+        this.setY(newY);
 
     }
 
@@ -112,8 +117,8 @@ public class Position {
      */
     public void moveDown() {
 
-        int newY = yCor - 1;
-        setY(newY);
+        int newY = this.yCor - 1;
+        this.setY(newY);
 
     }
     

@@ -17,23 +17,27 @@ public class Penguin extends WaterElement {
     private boolean sex;
     private int sexCounter;
     private Random r;
-    private Position position;
     private WaterParams params;
     private int eatCounter;
 
-    public Penguin(boolean sex, WaterWorld world) {
+    public Penguin(boolean sex, WaterWorld world, Position pos, ElementType type) {
+        super(pos, type);
+        this.setType(type);
+        this.setPos(pos);
+        this.setImg("/image/penguin.png");
         this.world = world;
         this.sex = sex;
         this.sexCounter = 0;
         this.r = new Random();
         this.params = world.getParams();
-        this.eatCounter=0;
+        this.eatCounter = 0;
     }
 
     public void breed() {
         WaterElement neighbour = this.world.selectRandomNeighbour(this);
 
         if (neighbour != null) {//found a mate
+            System.out.println("CreatingNewBornPenguin");
             if (((Penguin) neighbour).getSexCounter() <= this.params.getSexCounter() && this.sexCounter <= this.params.getSexCounter()) {
                 this.sexCounter++;
                 int sexC = ((Penguin) neighbour).getSexCounter() + 1;
@@ -49,17 +53,21 @@ public class Penguin extends WaterElement {
 
     @Override
     public void move() {
+        System.out.println("Moving penguin in= " + this.getPosition().getX() + ":" + this.getPosition().getY());
         int direction = 0; //0 down, 1 up, 2 left, 3 right, 4 stay
         int isSharkNear = isSharkNear();
         boolean free = false;
+        Position p = null;
         //check no sharks in the 
+        System.out.println("Shark is near = " + isSharkNear);
         if (isSharkNear == -1) {
 
             while (!free) {
 
                 direction = r.nextInt(5);//0 down, 1 up, 2 left, 3 right, 4 stay
+                System.out.println("Direction is =" + direction);
 
-                Position p = this.getPosition();
+                p = new Position(this.getPosition().getX(), this.getPosition().getY(), params);
 
                 if (direction == 0) {
                     p.moveDown();
@@ -75,61 +83,39 @@ public class Penguin extends WaterElement {
 
                 if (this.world.isCellFree(p.getX(), p.getY()) || this.world.isIce(p)) {
                     free = true;
+                    System.out.println("Found clean pos = " + p.getX() + ":" + p.getY());
                 }
             }
 
-            //check validity ALSO OF duble 
-            switch (direction) {
-                case 0:
-                        this.position.moveDown();
-                case 1:
-                        this.position.moveUp();
-                case 2:
-                        this.position.moveLeft();
-                case 3:
-                        this.position.moveRight();
-                case 4:
-                    return;
-                default:
-                    return;
+            if (p != null) {
+                this.getPosition().setNewPosition(p.getX(), p.getY());
             }
 
         } else { //shark near got to go
-            Position p = this.getPosition();
+
+            p = this.getPosition();
             //backwards movement
             if (isSharkNear == 0) {
-                    p.moveDown();
-                } else if (isSharkNear == 1) {
-                    p.moveUp();
-                } else if (isSharkNear == 2) {
-                    p.moveLeft();
-                } else if (isSharkNear == 3) {
-                    p.moveRight();
-                } else {
-                    //do nothing
+                p.moveDown();
+            } else if (isSharkNear == 1) {
+                p.moveUp();
+            } else if (isSharkNear == 2) {
+                p.moveLeft();
+            } else if (isSharkNear == 3) {
+                p.moveRight();
+            } else {
+                //do nothing
+            }
+
+            if (this.world.isCellFree(p.getX(), p.getY()) || this.world.isIce(p)) {
+                if (p != null) {
+                    this.getPosition().setNewPosition(p.getX(), p.getY());
                 }
 
-            direction = isSharkNear;
-            
-            if (!this.world.isCellFree(p.getX(), p.getY()) && !this.world.isIce(p)) {
-                direction = 4;
-
+                System.out.println("Found clean pos = " + p.getX() + ":" + p.getY());
             }
 
-            switch (direction) {
-                case 0:
-                        this.position.moveUp();
-                case 1:
-                        this.position.moveDown();
-                case 2:
-                        this.position.moveRight();
-                case 3:
-                        this.position.moveLeft();
-                case 4:
-                    return;
-                default:
-                    return;
-            }
+
 
         }
 
@@ -182,13 +168,16 @@ public class Penguin extends WaterElement {
 
     @Override
     public boolean placeElement() {
-        int x = r.nextInt(params.getWorld_width());
-        int y = r.nextInt(params.getWorld_height());
-        //check position
-        if (this.world.isCellFree(x, y) || this.world.isIce(new Position(x,y,null))) {
-            this.position = new Position(x, y, params);
-        } else {
-            placeElement();
+        boolean found = false;
+        while (!found) {
+            int x = r.nextInt(params.getWorld_width());
+            int y = r.nextInt(params.getWorld_height());
+            //check position
+            if (this.world.isCellFree(x, y) || this.world.isIce(new Position(x, y, null))) {
+                this.setPos(new Position(x, y, params));
+                found = true;
+            }
+
         }
         return true;
     }
