@@ -9,7 +9,7 @@ public class Planet extends WorldElement {
     
     private Alien population;
 
-    public Planet(Position pos, int speed, ImageIcon img) {
+    public Planet(Position pos, int speed, String img) {
         super(pos, speed, img, ElementType.SPACE_PLANET);
         population = null;
     }

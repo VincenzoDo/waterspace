@@ -7,7 +7,7 @@ import waterspace.WorldElement;
 
 public class Asteroid extends WorldElement {
 
-    public Asteroid(Position pos, int speed, ImageIcon img) {
+    public Asteroid(Position pos, int speed, String img) {
         super(pos, speed, img, ElementType.SPACE_ASTEROID);
     }
 

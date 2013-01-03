@@ -13,9 +13,9 @@ public abstract class WorldElement {
 
     private Position pos;
     private int speed;
-    private ImageIcon img;
+    private String img;
     private ElementType type;
-    public AbstractWorld world;
+    private AbstractWorld world;
     
     Random r;
     private static final int LEFT = 0;
@@ -37,13 +37,13 @@ public abstract class WorldElement {
      * @param img Image to display for the Element
      * @param type Element Type
      */
-    public WorldElement(Position pos, int speed, ImageIcon img,
+    public WorldElement(Position pos, int speed, String img,
             ElementType type) {
         this.pos = pos;
         this.speed = speed;
         this.img = img;
         this.type = type;
-        WorldManager.listElement.add(this);
+       // WorldManager.listElement.add(this);
     }
     
     /**
@@ -93,7 +93,7 @@ public abstract class WorldElement {
         return speed;
     }
 
-    public ImageIcon getImage() {
+    public String getImage() {
         return img;
     }
 
@@ -105,7 +105,7 @@ public abstract class WorldElement {
         this.speed = speed;
     }
 
-    public void setImg(ImageIcon img) {
+    public void setImg(String img) {
         this.img = img;
     }
 

@@ -4,6 +4,8 @@
  */
 package waterworld;
 
+import waterspace.ElementType;
+import waterspace.Position;
 import waterspace.WorldElement;
 
 /**
@@ -12,8 +14,9 @@ import waterspace.WorldElement;
  */
 public abstract class WaterElement extends WorldElement {
     
-    public WaterElement(){
-        
+    public WaterElement(Position pos, ElementType type){
+        super(pos, 0, null, type);
+
     }
     
     

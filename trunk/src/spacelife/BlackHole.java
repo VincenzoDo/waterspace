@@ -33,7 +33,7 @@ public class BlackHole extends WorldElement {
      * @param speed
      * @param img
      */
-    public void initObject(Position pos, int speed, ImageIcon img) {
+    public void initObject(Position pos, int speed, String img) {
         this.setPos(pos);
         this.setSpeed(speed);
         this.setImg(img);
