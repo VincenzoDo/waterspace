@@ -17,6 +17,7 @@ public class WaterWorld extends AbstractWorld {
     private Random r;
     private int iceCounter;
     private final Object lock = new Object();
+    private boolean endgame = false;
 
     public WaterWorld(WaterParams params) {
         this.params = params;
@@ -79,8 +80,15 @@ public class WaterWorld extends AbstractWorld {
     @Override
     public Command nextStep() {
         
+        if(endgame){
+            return null;
+        }
+        
         if(listElement.size() < 2){
             //stop game
+            endgame = true;
+            System.out.println("The game is finished");
+            return null;
         }
         int nPenguin=0;
         int nSharks=0;
@@ -94,7 +102,9 @@ public class WaterWorld extends AbstractWorld {
         }
         if(nPenguin == 0 || nSharks == 0){
             //stop game
-            
+            endgame = true;
+            System.out.println("The game is finished");
+            return null;
         }
 
         System.out.println("step 1: kill starving shark");
@@ -102,19 +112,10 @@ public class WaterWorld extends AbstractWorld {
         for (WorldElement elem : listElement) {
             WaterElement waterElem = (WaterElement) elem;
             waterElem.updateCounters();
-
-            if (waterElem.getType() != ElementType.WATER_SHARK) {
-                continue;
-            }
-
-            Shark shark = (Shark) waterElem;
-
-            if (shark.getEatCounter() == params.getStarving_each()) {
-                    killStarvingShark();
-            }
-
         }
 
+        killStarvingShark();
+        
         System.out.println("step 2: select random element");
         // select random element
         WaterElement waterElem = selectRandomElement();
@@ -142,12 +143,12 @@ public class WaterWorld extends AbstractWorld {
             waterElem.breed();
 
         }
-        
+        /*
         for (WaterElement shark : getSharks()) {
             shark.updateCounters();
             
         }
-
+        */
 
 
         return null;
@@ -366,4 +367,9 @@ public class WaterWorld extends AbstractWorld {
         }
         System.out.println("NewBornPosition = "+elem.getPosition().getX()+":"+elem.getPosition().getY());
     }
+    
+    public boolean isEndGame(){
+        return endgame;
+    }
+    
 }

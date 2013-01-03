@@ -11,4 +11,6 @@ public abstract class AbstractWorld {
 
     
 	public abstract Command nextStep();
+    
+    public abstract boolean isEndGame();
 }

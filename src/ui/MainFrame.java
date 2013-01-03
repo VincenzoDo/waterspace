@@ -49,6 +49,10 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }
     
+    public void endGame(){
+        JOptionPane.showMessageDialog(null, "The game is finished!");
+    }
+    
     public void refresh(ArrayList<WorldElement> elementList) {
         for (int x = 0; x < gridLab.length; x++) {
             for (int y = 0; y < gridLab[x].length; y++) {

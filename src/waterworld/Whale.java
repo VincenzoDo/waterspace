@@ -50,9 +50,10 @@ public class Whale extends WaterElement {
     public void move() {
         System.out.println("Moving whale: "+this.getPosition().getX()+":"+this.getPosition().getY());
         boolean free = false;
-        int direction = 0;
+        int direction;
         Position p =null;
-        while (!free) {
+        int nbOfTries = 0;
+        while (!free && nbOfTries<=5) {
 
             direction = r.nextInt(5);//0 down, 1 up, 2 left, 3 right, 4 stay
 
@@ -74,6 +75,7 @@ public class Whale extends WaterElement {
             if (this.world.isCellFree(p.getX(), p.getY()) && !this.world.isIce(new Position(p.getX(),p.getY(),params))) {
                 free = true;
             }
+            nbOfTries ++;
         }
 
         if(p != null){
