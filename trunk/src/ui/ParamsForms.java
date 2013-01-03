@@ -76,7 +76,21 @@ public class ParamsForms extends javax.swing.JFrame {
 
         jLabel6.setText("Recuperation period after sex");
 
-        jLabel7.setText("Recuperation period after sex");
+        y_dimension.setValue(8);
+
+        x_dimension.setValue(8);
+
+        n_penguin.setValue(4);
+
+        n_sharks.setValue(7);
+
+        n_ice.setValue(15);
+
+        r_period.setValue(5);
+
+        jLabel7.setText("Nb of step before shark die of hunger");
+
+        starving_each.setValue(100);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -94,7 +108,7 @@ public class ParamsForms extends javax.swing.JFrame {
                                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(y_dimension, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -153,9 +167,10 @@ public class ParamsForms extends javax.swing.JFrame {
 
     private void bt_startGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_startGameActionPerformed
         
-        wm.setParameters(8,8, 4, 7,15,2, 2);
         
-        //wm.setParameters((int)x_dimension.getValue(), (int)y_dimension.getValue(), (int)n_sharks.getValue(), (int)n_penguin.getValue(), (int)n_ice.getValue(), (int)starving_each.getValue(), (int)r_period.getValue());
+        //wm.setParameters(8,8, 4, 7,15,2, 2);
+        
+        wm.setParameters((int)x_dimension.getValue(), (int)y_dimension.getValue(), (int)n_sharks.getValue(), (int)n_penguin.getValue(), (int)n_ice.getValue(), (int)starving_each.getValue(), (int)r_period.getValue());
         gui.setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_bt_startGameActionPerformed

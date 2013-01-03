@@ -60,9 +60,10 @@ public class Penguin extends WaterElement {
         Position p = null;
         //check no sharks in the 
         System.out.println("Shark is near = " + isSharkNear);
+        int nbOfTries = 0;
         if (isSharkNear == -1) {
 
-            while (!free) {
+            while (!free && nbOfTries <= 5) {
 
                 direction = r.nextInt(5);//0 down, 1 up, 2 left, 3 right, 4 stay
                 System.out.println("Direction is =" + direction);
@@ -85,6 +86,7 @@ public class Penguin extends WaterElement {
                     free = true;
                     System.out.println("Found clean pos = " + p.getX() + ":" + p.getY());
                 }
+                nbOfTries ++;
             }
 
             if (p != null) {

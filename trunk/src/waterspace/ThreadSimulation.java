@@ -27,10 +27,15 @@ class ThreadSimulation extends Thread {
     @Override
     public void run(){
         try{
-            while(!pause){
+            while(!pause && !wm.isEndGame()){
                 wm.executeNextStep();
                 Thread.sleep(stepT);
             }
+            
+            if(wm.isEndGame()){
+                wm.endGame();
+            }
+            
         } catch (InterruptedException ex){
             
             

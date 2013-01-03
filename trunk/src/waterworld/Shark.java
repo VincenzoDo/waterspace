@@ -86,9 +86,10 @@ public class Shark extends WaterElement {
         int whaleP = isWhaleNear();
         System.out.println("whale is near: " + whaleP);
         Position p = null;
+        int nbOfTries = 0;
         if (whaleP == -1) {
 
-            while (!free) {
+            while (!free && nbOfTries <= 5) {
 
                 direction = r.nextInt(5);//0 down, 1 up, 2 left, 3 right, 4 stay
 
@@ -122,7 +123,7 @@ public class Shark extends WaterElement {
                     free = true;
                     noPlace = false;
                 }
-
+                nbOfTries++;
             }
 
             if (p != null) {
