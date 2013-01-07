@@ -107,6 +107,7 @@ public class WaterWorld extends AbstractWorld {
             //stop game
             endgame = true;
             System.out.println("The game is finished");
+            System.out.println("there is less than 2 elements....");
             return null;
         }
         int nPenguin=0;
@@ -123,6 +124,12 @@ public class WaterWorld extends AbstractWorld {
             //stop game
             endgame = true;
             System.out.println("The game is finished");
+            if(nPenguin == 0){
+                System.out.println("There is no more penguin");
+            }
+            else{
+                System.out.println("There is no more shark");
+            }
             return null;
         }
 
