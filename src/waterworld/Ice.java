@@ -56,6 +56,7 @@ public class Ice extends WaterElement {
     @Override
     public boolean placeElement() {
         boolean found = false;
+        int n = 0;
         while (!found) {
             int x = r.nextInt(params.getWorld_width());
             int y = r.nextInt(params.getWorld_height());
@@ -65,6 +66,10 @@ public class Ice extends WaterElement {
                 System.out.println("Adding ICE in pos = "+this.getPosition().getX()+":"+this.getPosition().getY());
                 found=true;
             }
+            if(n >= 10) {
+                return false;
+            }
+            n++;
         }
         return true;
     }
