@@ -3,6 +3,7 @@ package waterspace;
 //Vince
 import java.util.ArrayList;
 
+import spacelife.SpaceFactory;
 import spacelife.SpaceParams;
 import spacelife.SpaceWorld;
 import ui.Command;
@@ -17,6 +18,7 @@ public class WorldManager {
     private static WorldManager instance;
     private ThreadSimulation simulation;
     private MainFrame game;
+    private AbstractFactory factory;
 
     private WorldManager() {
     }
@@ -61,15 +63,15 @@ public class WorldManager {
     public void setParameters(SimulParams params){
         simulation = new ThreadSimulation(this, 100);
         //WaterParams params = new WaterParams(world_width, world_height, nbOfShark, nbOfPenguin, nbOfIce, starving_each, sexCounter);
-
         if(params instanceof WaterParams){
             //factory.setWorld(null);
             world = new WaterWorld((WaterParams)params);
             System.out.println("WaterWorld created");
         }
         else{
-            world = new SpaceWorld((SpaceParams)params);
-            System.out.println("WaterWorld created");
+        	factory = new SpaceFactory();
+            world = factory.createWorld((SpaceParams)params);
+            System.out.println("SpaceWorld created");
         }
         
         System.out.println("listElement size: " + world.listElement.size());
