@@ -12,6 +12,7 @@ import java.util.Iterator;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
 import waterspace.ElementType;
 import waterspace.Position;
 import waterspace.WorldElement;
@@ -63,6 +64,7 @@ public class MainFrame extends javax.swing.JFrame {
             for (int y = 0; y < gridLab[x].length; y++) {
                 gridLab[x][y].setOpaque(false);
                 gridLab[x][y].setIcon(null);
+                gridLab[x][y].setHorizontalAlignment(SwingConstants.CENTER);
                 boolean found = false;
                 Position p = new Position(x,y,null);
                 for (WorldElement worldElement : elementList) {
