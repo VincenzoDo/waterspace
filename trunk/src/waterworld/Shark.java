@@ -145,16 +145,18 @@ public class Shark extends WaterElement {
                 //do nothing
             }
 
-            direction = whaleP;
-            if (!this.world.isCellFree(p.getX(), p.getY()) && !this.world.isIce(p)) {
+
+            if (this.world.isCellFree(p.getX(), p.getY()) && !this.world.isIce(p)) {
                 //no pother place to go
-                direction = 4;
+                if (p != null) {
+                    this.getPosition().setNewPosition(p.getX(), p.getY());
+                }
 
+            } else {
+                //do nothing trapped
             }
 
-            if (p != null) {
-                this.getPosition().setNewPosition(p.getX(), p.getY());
-            }
+
         }
     }
 
