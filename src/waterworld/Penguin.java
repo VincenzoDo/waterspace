@@ -115,6 +115,8 @@ public class Penguin extends WaterElement {
                 }
 
                 System.out.println("Found clean pos = " + p.getX() + ":" + p.getY());
+            } else {
+                //do nothing trapped
             }
 
 
