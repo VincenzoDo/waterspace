@@ -80,6 +80,25 @@ public class WaterWorld extends AbstractWorld {
     @Override
     public Command nextStep() {
         
+        for (WorldElement worldElem1 : listElement) {
+            for (WorldElement worldElem2 : listElement) {
+                WaterElement elem1 = (WaterElement)worldElem1;
+                WaterElement elem2 = (WaterElement)worldElem2;
+                if(elem1.getId() != elem2.getId()){
+                    
+                    if(elem1.getPosition().equals(elem2.getPosition())){
+                        if(elem1.getType() == ElementType.WATER_ICE && elem2.getType() == ElementType.WATER_PENGUIN)
+                            continue;
+                        if(elem1.getType() == ElementType.WATER_PENGUIN && elem2.getType() == ElementType.WATER_ICE)
+                            continue;
+                        System.out.println("=================>ALERT... ["+elem1.getType()+" && "+elem2.getType()+"] POS ["+elem1.getPosition().getX()+":"+elem1.getPosition().getY()+"]<===========");
+                        System.exit(1);
+                    }
+                    
+                }
+            }
+        }
+        
         if(endgame){
             return null;
         }
@@ -384,6 +403,7 @@ public class WaterWorld extends AbstractWorld {
         System.out.println("NewBornPosition = "+elem.getPosition().getX()+":"+elem.getPosition().getY());
     }
     
+    @Override
     public boolean isEndGame(){
         return endgame;
     }

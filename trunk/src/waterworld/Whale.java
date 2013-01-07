@@ -78,7 +78,7 @@ public class Whale extends WaterElement {
             nbOfTries ++;
         }
 
-        if(p != null){
+        if(p != null && free){
             this.getPosition().setNewPosition(p.getX(), p.getY());
         }
         

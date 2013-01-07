@@ -89,13 +89,18 @@ public class Penguin extends WaterElement {
                 nbOfTries ++;
             }
 
-            if (p != null) {
+            if (p != null && free) {
+                System.out.println("moving........");
                 this.getPosition().setNewPosition(p.getX(), p.getY());
+            }
+            else{
+                System.out.println("aborting move...");
             }
 
         } else { //shark near got to go
 
-            p = this.getPosition();
+            //p = this.getPosition();
+            p = new Position(this.getPosition().getX(), this.getPosition().getY(), params);
             //backwards movement
             if (isSharkNear == 0) {
                 p.moveDown();

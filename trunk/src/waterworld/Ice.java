@@ -60,7 +60,7 @@ public class Ice extends WaterElement {
             int x = r.nextInt(params.getWorld_width());
             int y = r.nextInt(params.getWorld_height());
             //check position
-            if (this.world.isCellFree(x, y) || this.world.isPenguin(new Position(x,y,null))) {
+            if ((this.world.isCellFree(x, y) || this.world.isPenguin(new Position(x,y,null))) && !this.world.isIce(new Position(x, y, null))) {
                 this.setPos(new Position(x, y, params));
                 System.out.println("Adding ICE in pos = "+this.getPosition().getX()+":"+this.getPosition().getY());
                 found=true;

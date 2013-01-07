@@ -14,11 +14,17 @@ import waterspace.WorldElement;
  */
 public abstract class WaterElement extends WorldElement {
     
+    private static int idCount = 0;
+    private int id;
+    
     public WaterElement(Position pos, ElementType type){
         super(pos, 0, null, type);
-
+        this.id = ++idCount;
     }
     
+    public int getId(){
+        return id;
+    }
     
     public abstract void move();
     

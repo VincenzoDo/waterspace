@@ -126,12 +126,13 @@ public class Shark extends WaterElement {
                 nbOfTries++;
             }
 
-            if (p != null) {
+            if (p != null && free) {
                 this.getPosition().setNewPosition(p.getX(), p.getY());
             }
         } else { //whale is near need to go backwards
 
-            p = this.getPosition();
+            //p = this.getPosition();
+            p = new Position(this.getPosition().getX(), this.getPosition().getY(), params);
             //backwards movement
             if (whaleP == 0) {
                 p.moveUp();
