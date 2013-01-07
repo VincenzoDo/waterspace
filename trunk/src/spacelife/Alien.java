@@ -9,9 +9,11 @@ public class Alien extends WorldElement {
 
     public Alien(Position pos, int speed, String img,
             ElementType type) {
-
         super(pos, speed, img, type);
 
     }
+    public boolean placeElement() {
+		return false;
+	}
     
 }
