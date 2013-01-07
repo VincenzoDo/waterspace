@@ -4,8 +4,21 @@
  */
 package ui;
 
+import spacelife.SpaceParams;
 import waterspace.WorldManager;
 import waterworld.WaterParams;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.GroupLayout;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import javax.swing.JTabbedPane;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
 
 /**
  *
@@ -20,10 +33,24 @@ public class ParamsForms extends javax.swing.JFrame {
      * Creates new form ParamsForms
      */
     
-    private WaterParams params;
+    
+    JSpinner x_dimension = new JSpinner();
+    JSpinner y_dimension = new JSpinner();
+    JSpinner n_penguin = new JSpinner();
+    JSpinner n_sharks = new JSpinner();
+    JSpinner n_ice = new JSpinner();
+    JSpinner r_period = new JSpinner();
+    JSpinner starving_each = new JSpinner();
+    
+    JSpinner space_spin_y_dimension = new JSpinner();
+    JSpinner space_spin_nb_asteroids = new JSpinner();
+    JSpinner space_spin_nb_martian = new JSpinner();
+    JSpinner space_spin_nb_kryptonian = new JSpinner();
+    JSpinner space_spin_nb_planets = new JSpinner();
+    JSpinner space_spin_x_dimension = new JSpinner();
     
     public ParamsForms(WorldManager wm, MainFrame gui) {
-        this.params = new WaterParams(0,0);
+        getContentPane().setPreferredSize(new Dimension(350, 320));
         this.wm = wm;
         this.gui=gui;
         initComponents();
@@ -39,20 +66,6 @@ public class ParamsForms extends javax.swing.JFrame {
     private void initComponents() {
 
         bt_startGame = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        y_dimension = new javax.swing.JSpinner();
-        x_dimension = new javax.swing.JSpinner();
-        n_penguin = new javax.swing.JSpinner();
-        n_sharks = new javax.swing.JSpinner();
-        n_ice = new javax.swing.JSpinner();
-        r_period = new javax.swing.JSpinner();
-        jLabel7 = new javax.swing.JLabel();
-        starving_each = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,105 +76,174 @@ public class ParamsForms extends javax.swing.JFrame {
                 bt_startGameActionPerformed(evt);
             }
         });
+        getContentPane().setLayout(new BorderLayout(0, 0));
+        
+        tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+        getContentPane().add(tabbedPane, BorderLayout.CENTER);
+        
+        JPanel waterPanel = new JPanel();
+        tabbedPane.addTab("Water world", null, waterPanel, null);
+        waterPanel.setLayout(null);
+        
+        JLabel label = new JLabel();
+        label.setText("Dimension Y");
+        label.setBounds(10, 47, 172, 14);
+        waterPanel.add(label);
+        
+        JLabel label_1 = new JLabel();
+        label_1.setText("Number of Penguins");
+        label_1.setBounds(10, 77, 172, 14);
+        waterPanel.add(label_1);
+        
+        JLabel label_2 = new JLabel();
+        label_2.setText("Number of Sharks");
+        label_2.setBounds(10, 115, 172, 14);
+        waterPanel.add(label_2);
+        
+        JLabel label_3 = new JLabel();
+        label_3.setText("Number of Iced Case");
+        label_3.setBounds(10, 153, 172, 14);
+        waterPanel.add(label_3);
+        
+        JLabel label_4 = new JLabel();
+        label_4.setText("Recuperation period after sex");
+        label_4.setBounds(10, 191, 201, 14);
+        waterPanel.add(label_4);
+        
+        JLabel label_5 = new JLabel();
+        label_5.setText("Nb of step before shark die of hunger");
+        label_5.setBounds(10, 229, 246, 14);
+        waterPanel.add(label_5);
+        
+        
+        y_dimension.setModel(new SpinnerNumberModel(new Integer(8), null, null, new Integer(1)));
+        y_dimension.setMinimumSize(new Dimension(40, 20));
+        y_dimension.setPreferredSize(new Dimension(40, 20));
+        y_dimension.setBounds(292, 47, 43, 20);
+        waterPanel.add(y_dimension);
+        
+        
+        n_penguin.setModel(new SpinnerNumberModel(new Integer(4), null, null, new Integer(1)));
+        n_penguin.setMinimumSize(new Dimension(40, 20));
+        n_penguin.setPreferredSize(new Dimension(40, 20));
+        n_penguin.setBounds(292, 77, 43, 20);
+        waterPanel.add(n_penguin);
+        
+        n_sharks.setModel(new SpinnerNumberModel(new Integer(7), null, null, new Integer(1)));
+        n_sharks.setMinimumSize(new Dimension(40, 20));
+        n_sharks.setPreferredSize(new Dimension(40, 20));
+        n_sharks.setBounds(292, 115, 43, 20);
+        waterPanel.add(n_sharks);
+        
+        n_ice.setModel(new SpinnerNumberModel(new Integer(15), null, null, new Integer(1)));
+        n_ice.setMinimumSize(new Dimension(40, 20));
+        n_ice.setPreferredSize(new Dimension(40, 20));
+        n_ice.setBounds(292, 153, 43, 20);
+        waterPanel.add(n_ice);
+        
+        r_period.setModel(new SpinnerNumberModel(new Integer(5), null, null, new Integer(1)));
+        r_period.setMinimumSize(new Dimension(40, 20));
+        r_period.setPreferredSize(new Dimension(40, 20));
+        r_period.setBounds(292, 191, 43, 20);
+        waterPanel.add(r_period);
+        
+        starving_each.setModel(new SpinnerNumberModel(new Integer(100), null, null, new Integer(1)));
+        starving_each.setMinimumSize(new Dimension(40, 20));
+        starving_each.setPreferredSize(new Dimension(40, 20));
+        starving_each.setBounds(292, 229, 43, 20);
+        waterPanel.add(starving_each);
+        
+        JLabel label_6 = new JLabel();
+        label_6.setText("Dimension X");
+        label_6.setBounds(10, 14, 172, 14);
+        waterPanel.add(label_6);
+        
+        
+        x_dimension.setModel(new SpinnerNumberModel(new Integer(8), null, null, new Integer(1)));
+        x_dimension.setMinimumSize(new Dimension(40, 20));
+        x_dimension.setPreferredSize(new Dimension(40, 20));
+        x_dimension.setBounds(292, 14, 43, 20);
+        waterPanel.add(x_dimension);
+        
+        JPanel spacePanel = new JPanel();
+        spacePanel.setLayout(null);
+        tabbedPane.addTab("Space world", null, spacePanel, null);
+        
+        JLabel label_7 = new JLabel();
+        label_7.setText("Dimension Y");
+        label_7.setBounds(10, 47, 172, 14);
+        spacePanel.add(label_7);
+        
+        JLabel lblNumberOfAsteroids = new JLabel();
+        lblNumberOfAsteroids.setText("Number of Asteroids");
+        lblNumberOfAsteroids.setBounds(10, 77, 172, 14);
+        spacePanel.add(lblNumberOfAsteroids);
+        
+        JLabel lblNumberOfMartiens = new JLabel();
+        lblNumberOfMartiens.setText("Number of Martian");
+        lblNumberOfMartiens.setBounds(10, 115, 172, 14);
+        spacePanel.add(lblNumberOfMartiens);
+        
+        JLabel lblNumberOfKryptonian = new JLabel();
+        lblNumberOfKryptonian.setText("Number of Kryptonian");
+        lblNumberOfKryptonian.setBounds(10, 153, 172, 14);
+        spacePanel.add(lblNumberOfKryptonian);
+        
+        JLabel lblNumberOfPlanets = new JLabel();
+        lblNumberOfPlanets.setText("Number of Planets");
+        lblNumberOfPlanets.setBounds(10, 191, 201, 14);
+        spacePanel.add(lblNumberOfPlanets);
+        space_spin_y_dimension.setModel(new SpinnerNumberModel(8, 6, 50, 1));
+        
+        
+        space_spin_y_dimension.setPreferredSize(new Dimension(40, 20));
+        space_spin_y_dimension.setMinimumSize(new Dimension(40, 20));
+        space_spin_y_dimension.setBounds(292, 47, 43, 20);
+        spacePanel.add(space_spin_y_dimension);
+        
+        space_spin_nb_asteroids.setPreferredSize(new Dimension(40, 20));
+        space_spin_nb_asteroids.setMinimumSize(new Dimension(40, 20));
+        space_spin_nb_asteroids.setBounds(292, 77, 43, 20);
+        spacePanel.add(space_spin_nb_asteroids);
+        
+        space_spin_nb_martian.setPreferredSize(new Dimension(40, 20));
+        space_spin_nb_martian.setMinimumSize(new Dimension(40, 20));
+        space_spin_nb_martian.setBounds(292, 115, 43, 20);
+        spacePanel.add(space_spin_nb_martian);
+        
+        space_spin_nb_kryptonian.setPreferredSize(new Dimension(40, 20));
+        space_spin_nb_kryptonian.setMinimumSize(new Dimension(40, 20));
+        space_spin_nb_kryptonian.setBounds(292, 153, 43, 20);
+        spacePanel.add(space_spin_nb_kryptonian);
+        
+        space_spin_nb_planets.setPreferredSize(new Dimension(40, 20));
+        space_spin_nb_planets.setMinimumSize(new Dimension(40, 20));
+        space_spin_nb_planets.setBounds(292, 191, 43, 20);
+        spacePanel.add(space_spin_nb_planets);
+        
+        JLabel label_13 = new JLabel();
+        label_13.setText("Dimension X");
+        label_13.setBounds(10, 14, 172, 14);
+        spacePanel.add(label_13);
+        space_spin_x_dimension.setModel(new SpinnerNumberModel(8, 6, 50, 1));
+        
+        space_spin_x_dimension.setPreferredSize(new Dimension(40, 20));
+        space_spin_x_dimension.setMinimumSize(new Dimension(40, 20));
+        space_spin_x_dimension.setBounds(292, 14, 43, 20);
+        spacePanel.add(space_spin_x_dimension);
+        getContentPane().add(bt_startGame, BorderLayout.SOUTH);
+        
+        
+        ChangeListener spaceDimensionChangeListener = new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent arg0) {
+                space_adapt_minMaxValues();
+            }
+        };
+        space_spin_x_dimension.addChangeListener(spaceDimensionChangeListener);
+        space_spin_y_dimension.addChangeListener(spaceDimensionChangeListener);
 
-        jLabel1.setText("Dimension Y");
-
-        jLabel2.setText("Dimension X");
-
-        jLabel3.setText("Number of Penguins");
-
-        jLabel4.setText("Number of Sharks");
-
-        jLabel5.setText("Number of Iced Case");
-
-        jLabel6.setText("Recuperation period after sex");
-
-        y_dimension.setValue(8);
-
-        x_dimension.setValue(8);
-
-        n_penguin.setValue(4);
-
-        n_sharks.setValue(7);
-
-        n_ice.setValue(15);
-
-        r_period.setValue(5);
-
-        jLabel7.setText("Nb of step before shark die of hunger");
-
-        starving_each.setValue(100);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(y_dimension, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(n_penguin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(n_sharks, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(n_ice, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(r_period, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(starving_each, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(104, 104, 104)
-                                .addComponent(x_dimension, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(168, 168, 168)
-                        .addComponent(bt_startGame)))
-                .addContainerGap(130, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(x_dimension, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(13, 13, 13)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(y_dimension, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(n_penguin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(n_sharks, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(n_ice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(r_period, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(starving_each, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                .addComponent(bt_startGame)
-                .addGap(31, 31, 31))
-        );
-
+        space_adapt_minMaxValues();
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -170,27 +252,54 @@ public class ParamsForms extends javax.swing.JFrame {
         
         //wm.setParameters(8,8, 4, 7,15,2, 2);
         
-        wm.setParameters((int)x_dimension.getValue(), (int)y_dimension.getValue(), (int)n_sharks.getValue(), (int)n_penguin.getValue(), (int)n_ice.getValue(), (int)starving_each.getValue(), (int)r_period.getValue());
+        if(tabbedPane.getSelectedIndex() == 0){
+            wm.setParameters(new WaterParams((Integer)x_dimension.getValue(), (Integer)y_dimension.getValue(), (Integer)n_sharks.getValue(), (Integer)n_penguin.getValue(), (Integer)n_ice.getValue(), (Integer)starving_each.getValue(), (Integer)r_period.getValue()));
+        }
+        else{
+            wm.setParameters(new SpaceParams(
+                    (Integer)space_spin_x_dimension.getValue(),
+                    (Integer)space_spin_y_dimension.getValue(),
+                    (Integer)space_spin_nb_planets.getValue(),
+                    (Integer)space_spin_nb_asteroids.getValue(),
+                    (Integer)space_spin_nb_kryptonian.getValue(),
+                    (Integer)space_spin_nb_martian.getValue()
+                    ));
+        }
+
         gui.setVisible(true);
+        this.setVisible(false);
+        
         // TODO add your handling code here:
     }//GEN-LAST:event_bt_startGameActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_startGame;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JSpinner n_ice;
-    private javax.swing.JSpinner n_penguin;
-    private javax.swing.JSpinner n_sharks;
-    private javax.swing.JSpinner r_period;
-    private javax.swing.JSpinner starving_each;
-    private javax.swing.JSpinner x_dimension;
-    private javax.swing.JSpinner y_dimension;
-    // End of variables declaration//GEN-END:variables
+    private JTabbedPane tabbedPane;
+    
+    void space_adapt_minMaxValues(){
+        int max = (int)(1.0/5 * ((Integer)space_spin_x_dimension.getValue()) + ((Integer)space_spin_y_dimension.getValue()));
+        
+        JSpinner[] spinners = new JSpinner[]{
+                space_spin_nb_asteroids,
+                space_spin_nb_planets,
+                space_spin_nb_kryptonian,
+                space_spin_nb_martian
+        };
+        
+        for(int i = 0; i < spinners.length; i++){
+            space_adapt_single_minMaxValues(spinners[i], (Integer)spinners[i].getValue(), 1, max);
+        }
+    }
+    
+    void space_adapt_single_minMaxValues(JSpinner source, int actualValue, int min, int max){
+        if(max < actualValue){
+            actualValue = max;
+        }
+        if(min > actualValue){
+            actualValue = min;
+        }
+        source.setModel(new SpinnerNumberModel(actualValue, min, max, 1));
+        
+    }
 }

@@ -43,11 +43,11 @@ public class IHM extends JFrame{
         this.setLocationRelativeTo(null);
         
         // Add Icon of Element in the tab
-        for(int i=0; i<vm.listElement.size() ; i++){
-            WorldElement elt = vm.listElement.get(i);
+        for(int i=0; i<vm.getListElement().size() ; i++){
+            WorldElement elt = vm.getListElement().get(i);
             int x = elt.getPosition().getX();
             int y = elt.getPosition().getY();
-            elements[x][y]=elt.getImage();
+            elements[x][y]= new ImageIcon(elt.getImage());
             images[x][y] = new JLabel(elements[x][y]);
         }
         
