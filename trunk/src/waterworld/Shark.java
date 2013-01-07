@@ -208,6 +208,7 @@ public class Shark extends WaterElement {
     @Override
     public boolean placeElement() {
         boolean found = false;
+        int n = 0;
         while (!found) {
             int x = r.nextInt(params.getWorld_width());
             int y = r.nextInt(params.getWorld_height());
@@ -216,6 +217,10 @@ public class Shark extends WaterElement {
                 this.setPos(new Position(x, y, params));
                 found = true;
             }
+            if(n >= 10){
+                return false;
+            }
+            n++;
         }
         return true;
     }
