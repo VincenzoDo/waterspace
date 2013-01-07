@@ -73,7 +73,7 @@ public class Shark extends WaterElement {
     public void eat() {
         if (hasKilled) {
             hasKilled = false;
-            eatCounter--;
+            eatCounter=0;
         }
     }
 
