@@ -4,8 +4,6 @@
  */
 package waterspace;
 
-import com.sun.istack.internal.logging.Logger;
-import java.util.logging.Level;
 
 /**
  *

@@ -10,7 +10,7 @@ public class WaterParams extends SimulParams {
 	private int starving_each;
         private int sexCounter;
 
-    public WaterParams( int world_width,int world_height, int nbOfShark, int nbOfPenguin, int nbOfIce, int starving_each, int sexCounter) {
+    public WaterParams(int world_width,int world_height, int nbOfShark, int nbOfPenguin, int nbOfIce, int starving_each, int sexCounter) {
         super(world_height,world_width);
         this.setMapHeight(world_height);
         this.setMapWidth(world_width);

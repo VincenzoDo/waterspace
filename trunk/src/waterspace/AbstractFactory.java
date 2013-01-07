@@ -1,12 +1,12 @@
 package waterspace;
+
+import spacelife.SpaceFactory;
+import spacelife.SpaceParams;
+
 //Silvin
-public class AbstractFactory {
+public abstract class AbstractFactory {
 
-	public AbstractWorld createWorld() {
-		throw new UnsupportedOperationException();
-	}
+	public abstract AbstractWorld createWorld(SimulParams params);
 
-	public WorldElement createElement(ElementType type) {
-		throw new UnsupportedOperationException();
-	}
+	public abstract WorldElement createElement(ElementType type, Position pos);
 }

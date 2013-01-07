@@ -1,6 +1,7 @@
 package spacelife;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import ui.Command;
 import waterspace.AbstractWorld;
@@ -15,11 +16,13 @@ public class SpaceWorld extends AbstractWorld {
 	private SpaceFactory sf;
 	private boolean endgame = false;
 	private Position trouNoir;
+	private Random r;
+	private Position placement;
 	
-	public SpaceWorld(SpaceParams sp){
+	public SpaceWorld(SpaceParams sp, SpaceFactory sf){
 		this.sp = sp;
-		sf = new SpaceFactory(sp, this);
-		
+		this.sf=sf;
+		r = new Random();
 		 // create all elements and place in world
         ElementType typeList[] = ElementType.values();
         for (ElementType type : typeList) {
@@ -31,31 +34,30 @@ public class SpaceWorld extends AbstractWorld {
             System.out.println(type+" " +nbOfElement);
 			for(int i=0; i<nbOfElement; i++){
 				WorldElement elem = null;
-				if (type == ElementType.SPACE_PLANET) {
-                    System.out.println("Creating planete");
-                    elem = sf.createPlanet();
-                }
-                if (type == ElementType.SPACE_ASTEROID) {
-                    System.out.println("Creating asteroid");
-                    elem = sf.createAsteroid();
-                }
-                if (type == ElementType.SPACE_BLACKHOLE) {
-                    System.out.println("Creating blackhole");
-                    elem = sf.createBlackHole();
-                    trouNoir = elem.getPosition();
-                }
-                if (type == ElementType.SPACE_MARTIAN) {
-                    System.out.println("Creating martian");
-                    elem = sf.createMartian();
-                }
-                if (type == ElementType.SPACE_KRYPTONIAN) {
-                    System.out.println("Creating krypronian");
-                    elem = sf.createKryptonian();
-                }
-
-                listElement.add(elem);
+				if(placeElement()){
+					elem = sf.createElement(type, placement);
+	                if (type == ElementType.SPACE_BLACKHOLE) {
+	                    trouNoir = elem.getPosition();
+	                }
+	                listElement.add(elem);
+				}
 			}
         }
+	}
+	
+	public boolean placeElement() {
+		boolean found = false;
+		while (!found) {
+			int x = r.nextInt(sp.getWorld_width());
+			int y = r.nextInt(sp.getWorld_height());
+			// check position
+			if (isCellFree(x, y)) {
+				placement = new Position(x, y, sp);
+				found = true;
+			}
+
+		}
+		return true;
 	}
 	
 	 public boolean isCellFree(int x, int y) {
@@ -132,23 +134,13 @@ public class SpaceWorld extends AbstractWorld {
 
         ArrayList<WorldElement> deleteElement = new ArrayList<WorldElement>();
         for (WorldElement worldElement : listElement) {
-             if(worldElement.getType() == ElementType.SPACE_ASTEROID){
-            	 worldElement.move(2);
-            	 //Collision astero avec trou noir
+             if(worldElement.getType() != ElementType.SPACE_BLACKHOLE){
+            	 worldElement.move(worldElement.getSpeed());
+            	//Collision astero avec trou noir
             	 if(worldElement.getPosition().getX()==trouNoir.getX() && worldElement.getPosition().getY()==trouNoir.getY()){
             		 deleteElement.add(worldElement);
             	 }
-            	 //Collision aster avec astero
-            	 
-             }
-             if(worldElement.getType() == ElementType.SPACE_KRYPTONIAN || worldElement.getType() ==  ElementType.SPACE_MARTIAN ||worldElement.getType() == ElementType.SPACE_PLANET){
-            	 worldElement.move(1);
-            	 //Collision avec trou noir
-            	 if(worldElement.getPosition().getX()==trouNoir.getX() && worldElement.getPosition().getY()==trouNoir.getY()){
-            		 deleteElement.add(worldElement);
-            	 }
-            	 //Collision avec astero
-             }
+             }      	 
         }
         for (WorldElement worldElement : deleteElement) {
         	listElement.remove(worldElement);

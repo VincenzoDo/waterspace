@@ -1,8 +1,13 @@
 package waterworld;
 
+import spacelife.SpaceFactory;
+import spacelife.SpaceParams;
 import waterspace.AbstractFactory;
+import waterspace.AbstractWorld;
 import waterspace.ElementType;
 import waterspace.Position;
+import waterspace.SimulParams;
+import waterspace.WorldElement;
 
 public class WaterFactory extends AbstractFactory {
     
@@ -37,6 +42,18 @@ public class WaterFactory extends AbstractFactory {
     public Ice createIce() {
         return new Ice(world, pos , ElementType.WATER_ICE);
     }
+
+	@Override
+	public WorldElement createElement(ElementType type, Position pos) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public AbstractWorld createWorld(SimulParams param) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 
 }

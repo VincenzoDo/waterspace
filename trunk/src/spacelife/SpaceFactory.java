@@ -3,81 +3,72 @@ package spacelife;
 import java.util.Random;
 
 import waterspace.AbstractFactory;
+import waterspace.AbstractWorld;
+import waterspace.ElementType;
 import waterspace.Position;
+import waterspace.SimulParams;
+import waterspace.WorldElement;
 import waterworld.WaterParams;
 import waterworld.WaterWorld;
 
 public class SpaceFactory extends AbstractFactory {
 
-	private SpaceParams params;
-	private SpaceWorld world;
-	private Position pos;
-	private Random r;
 
-	public SpaceFactory(SpaceParams params, SpaceWorld world) {
-		this.params = params;
-		this.world = world;
-		this.pos = new Position(0, 0, params);
-		r = new Random();
+	public SpaceFactory() {
+		
 	}
 
-	public Planet createPlanet() {
-		if(placeElement()){
+	public Planet createPlanet(Position pos) {
 			return new Planet(pos, 1, "/image/planete.jpg");
-		}else{
-			return null;
-		}
 	}
 
-	public Asteroid createAsteroid() {
-		if(placeElement()){
-		return new Asteroid(pos, 1, "/image/Asteroide.jpg");
-	}else{
-		return null;
-	}
+	public Asteroid createAsteroid(Position pos) {
+		return new Asteroid(pos, 2, "/image/Asteroide.jpg");
 	}
 
-	public BlackHole createBlackHole() {
-		if(placeElement()){
-		BlackHole.getInstance().initObject(pos, 1, "/image/trounoir.jpg");
+	public BlackHole createBlackHole(Position pos) {
+		BlackHole.getInstance().initObject(pos, 0, "/image/trounoir.jpg");
 		return BlackHole.getInstance();
-	}else{
-		return null;
-	}
 	}
 
-	public Martian createMartian() {
-		if(placeElement()){
+	public Martian createMartian(Position pos) {
 		return new Martian(pos, 1, "/image/mars.jpg");
-	}else{
-		return null;
-	}
 	}
 
-	public Kryptonian createKryptonian() {
-		if(placeElement()){
+	public Kryptonian createKryptonian(Position pos) {
 		return new Kryptonian(pos, 1, "/image/krypton.jpg");
-	}else{
-		return null;
-	}
 	}
 
-	public boolean placeElement() {
-		boolean found = false;
-		while (!found) {
-			int x = r.nextInt(params.getWorld_width());
-			int y = r.nextInt(params.getWorld_height());
-			// check position
-			if (this.world.isCellFree(x, y)) {
-				pos = new Position(x, y, params);
-				found = true;
-			}
 
-		}
-		return true;
+	public SpaceWorld createWorld(SimulParams sp) {
+		return new SpaceWorld((SpaceParams)sp, this);
 	}
 
-	public SpaceWorld createWorld() {
-		throw new UnsupportedOperationException();
+	@Override
+	public WorldElement createElement(ElementType type, Position placement) {
+		// TODO Auto-generated method stub
+		WorldElement elem = null;
+		if (type == ElementType.SPACE_PLANET) {
+            System.out.println("Creating planete");
+            elem = createPlanet(placement);
+        }
+        if (type == ElementType.SPACE_ASTEROID) {
+            System.out.println("Creating asteroid");
+            elem = createAsteroid(placement);
+        }
+        if (type == ElementType.SPACE_BLACKHOLE) {
+        	System.out.println("Creating blackhole");
+            elem = createBlackHole(placement);
+        }
+        if (type == ElementType.SPACE_MARTIAN) {
+        	System.out.println("Creating martian");
+            elem = createMartian(placement);
+        }
+        if (type == ElementType.SPACE_KRYPTONIAN) {
+        	System.out.println("Creating krypronian");
+            elem = createKryptonian(placement);
+        }
+		return elem;
 	}
+
 }
