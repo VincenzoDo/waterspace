@@ -66,7 +66,8 @@ public class WorldManager {
         //WaterParams params = new WaterParams(world_width, world_height, nbOfShark, nbOfPenguin, nbOfIce, starving_each, sexCounter);
         if(params instanceof WaterParams){
             //factory.setWorld(null);
-            world = new WaterWorld((WaterParams)params);
+            factory = new WaterFactory((WaterParams)params);
+            world = factory.createWorld(params);
             System.out.println("WaterWorld created");
         }
         else{

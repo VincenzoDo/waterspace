@@ -21,10 +21,18 @@ public class WaterWorld extends AbstractWorld {
 
     public WaterWorld(WaterParams params) {
         this.params = params;
-        this.factory = new WaterFactory(params, this);
         this.iceCounter = 0;
         this.r = new Random();
 
+    }
+    public void iniWorld(WaterFactory factory){
+        this.factory = factory;
+        
+        if(!factory.isWorld()){
+            System.out.println("Jfjdkslajflkéadsjfdklséa");
+            System.exit(10);
+        }
+        
         // create all elements and place in world
         ElementType typeList[] = ElementType.values();
         for (ElementType type : typeList) {
