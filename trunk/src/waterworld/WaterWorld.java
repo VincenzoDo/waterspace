@@ -277,6 +277,22 @@ public class WaterWorld extends AbstractWorld {
         }
         return false;
     }
+    
+    public boolean isIceFree(Position p) {
+        boolean isIce = false;
+        ArrayList<Ice> ice = new ArrayList();
+        for (WorldElement creature : listElement) {
+            if (creature.getType() == ElementType.WATER_ICE) {
+                if (creature.getPosition().equals(p)) {
+                    isIce = true;
+                }
+            }
+            else if(creature.getPosition().equals(p)){
+                return false;
+            }
+        }
+        return isIce;
+    }
 
     public boolean isIceOccupied(WorldElement ice) {
         for (WorldElement creature : listElement) {
