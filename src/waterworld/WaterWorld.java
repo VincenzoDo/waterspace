@@ -78,10 +78,10 @@ public class WaterWorld extends AbstractWorld {
     }
 
     @Override
-    public Command nextStep() {
+    public void nextStep() {
         
         if(endgame){
-            return null;
+            return;
         }
         
         if(listElement.size() < 2){
@@ -89,7 +89,7 @@ public class WaterWorld extends AbstractWorld {
             endgame = true;
             System.out.println("The game is finished");
             System.out.println("there is less than 2 elements....");
-            return null;
+            return;
         }
         int nPenguin=0;
         int nSharks=0;
@@ -110,7 +110,7 @@ public class WaterWorld extends AbstractWorld {
         	}else{
         		System.out.println("There is no more shark");
         	}
-            return null;
+            return;
         }
 
         System.out.println("step 1: kill starving shark");
@@ -155,11 +155,6 @@ public class WaterWorld extends AbstractWorld {
             
         }
         */
-
-
-        return null;
-
-
     }
 
     private void killStarvingShark() {
@@ -293,6 +288,21 @@ public class WaterWorld extends AbstractWorld {
             }
         }
         return false;
+    }
+    
+    public boolean isIceFree(Position p) {
+        boolean isIce = false;
+        ArrayList<Ice> ice = new ArrayList();
+        for (WorldElement creature : listElement) {
+            if (creature.getType() == ElementType.WATER_ICE) {
+                if (creature.getPosition().equals(p)) {
+                    isIce = true;
+                }
+            } else if (creature.getPosition().equals(p)) {
+                return false;
+            }
+        }
+        return isIce;
     }
 
     public boolean isPenguin(Position p) {

@@ -19,7 +19,7 @@ public class SpaceFactory extends AbstractFactory {
 	}
 
 	public Planet createPlanet(Position pos) {
-			return new Planet(pos, 1, "/image/planete.jpg");
+			return new Planet(pos, 1, "/image/planete.jpg", "/image/planete_mars.jpg", "/image/planete_krypton.jpg");
 	}
 
 	public Asteroid createAsteroid(Position pos) {

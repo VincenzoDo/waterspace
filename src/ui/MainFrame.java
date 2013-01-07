@@ -24,9 +24,14 @@ public class MainFrame extends javax.swing.JFrame {
 
     private final WorldManager wm;
     public JLabel[][] gridLab;
+    
+    Command cmdRunSim;
+    Command cmdNextStep;
 
     MainFrame(WorldManager wm) {
         this.wm = wm;
+        cmdRunSim = new RunSim(wm);
+        cmdNextStep = new NextStep(wm);
     }
 
     /**
@@ -187,11 +192,11 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void bt_startActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_startActionPerformed
              // TODO add your handling code here:
-        wm.runsim();
+        this.execCmd(cmdRunSim);
     }//GEN-LAST:event_bt_startActionPerformed
 
     private void bt_stepByStepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_stepByStepActionPerformed
-        wm.executeNextStep();
+        this.execCmd(cmdNextStep);
     }//GEN-LAST:event_bt_stepByStepActionPerformed
 
     private void bt_exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_exitActionPerformed
@@ -210,6 +215,10 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel panel_game;
     // End of variables declaration//GEN-END:variables
 
+    private void execCmd(Command cmd){
+        cmd.execute();
+    }
+    
     public void displayEndofGame() {
         JOptionPane.showMessageDialog(panel_game,"End of game");
     }

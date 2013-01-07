@@ -8,10 +8,32 @@ import waterspace.WorldElement;
 public class Planet extends WorldElement {
     
     private Alien population;
+    
+    private String imgPlanetM;
+    private String imgPlanetK;
+    private String imgPlaneteEmpty;
 
-    public Planet(Position pos, int speed, String img) {
-        super(pos, speed, img, ElementType.SPACE_PLANET);
+    public Planet(Position pos, int speed, String imgPlaneteEmpty, String imgPlanetM, String imgPlanetK) {
+        super(pos, speed, imgPlaneteEmpty, ElementType.SPACE_PLANET);
         population = null;
+        this.imgPlanetM = imgPlanetM;
+        this.imgPlanetK = imgPlanetK;
+        this.imgPlaneteEmpty = imgPlaneteEmpty;
+    }
+    
+    @Override
+    public String getImage() {
+        if(!isOccupied()){
+            return imgPlaneteEmpty;
+        }
+        else{
+            if(population instanceof Martian){
+                return imgPlanetM;
+            }
+            else{
+                return imgPlanetK;
+            }
+        }
     }
     
     /**

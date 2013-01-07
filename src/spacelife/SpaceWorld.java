@@ -96,15 +96,15 @@ public class SpaceWorld extends AbstractWorld {
 	}
 
     @Override
-    public Command nextStep() {
+    public void nextStep() {
     	if(endgame){
-            return null;
+            return;
         }
         if(listElement.size() < 2){
             //stop game
             endgame = true;
             System.out.println("The game is finished");
-            return null;
+            return;
         }
         int nbPlanete=0;
         int nbMartian=0;
@@ -128,7 +128,7 @@ public class SpaceWorld extends AbstractWorld {
             //stop game
             endgame = true;
             System.out.println("The game is finished");
-            return null;
+            return;
         }
 
 
@@ -146,7 +146,7 @@ public class SpaceWorld extends AbstractWorld {
         	listElement.remove(worldElement);
         }
 
-        return null;
+        return;
     }
 
 	@Override
