@@ -10,7 +10,7 @@ public abstract class AbstractWorld {
 	public ArrayList<WorldElement> listElement = new ArrayList<WorldElement>();
 
     
-	public abstract Command nextStep();
+	public abstract void nextStep();
     
     public abstract boolean isEndGame();
 }

@@ -36,6 +36,7 @@ public class WorldManager {
 //            cmd.execute();
 
         world.nextStep();
+        
         game.refresh(world.listElement);
 
         //listCommand.add();

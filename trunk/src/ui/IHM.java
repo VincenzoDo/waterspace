@@ -64,13 +64,6 @@ public class IHM extends JFrame{
 
     }
 
-   
-    public static void main(String[] args) {
-        WorldManager world = WorldManager.getInstance();
-        IHM game = new IHM(world);
-        //Ajout de la fenêtre comme observer de notre modèle
-  }
-
     
     
 }
