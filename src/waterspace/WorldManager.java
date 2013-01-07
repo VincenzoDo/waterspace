@@ -1,6 +1,10 @@
 package waterspace;
 
 //Vince
+import java.util.ArrayList;
+
+import spacelife.SpaceParams;
+import spacelife.SpaceWorld;
 import ui.Command;
 import ui.MainFrame;
 import waterworld.WaterFactory;
@@ -49,19 +53,31 @@ public class WorldManager {
     public void setGUI(MainFrame game) {
         this.game = game;
     }
+    
+    public ArrayList<WorldElement> getListElement(){
+        return world.listElement;
+    }
 
-    public void setParameters(int world_width, int world_height, int nbOfShark, int nbOfPenguin, int nbOfIce, int starving_each, int sexCounter) {
+    public void setParameters(SimulParams params){
         simulation = new ThreadSimulation(this, 100);
-        WaterParams params = new WaterParams(world_width, world_height, nbOfShark, nbOfPenguin, nbOfIce, starving_each, sexCounter);
+        //WaterParams params = new WaterParams(world_width, world_height, nbOfShark, nbOfPenguin, nbOfIce, starving_each, sexCounter);
 
-        //factory.setWorld(null);
-        world = new WaterWorld(params);
-        System.out.println("WorldCreated");
+        if(params instanceof WaterParams){
+            //factory.setWorld(null);
+            world = new WaterWorld((WaterParams)params);
+            System.out.println("WaterWorld created");
+        }
+        else{
+            world = new SpaceWorld((SpaceParams)params);
+            System.out.println("WaterWorld created");
+        }
+        
         System.out.println("listElement size: " + world.listElement.size());
         for (WorldElement element : world.listElement) {
             System.out.println("ELT type: " + element.getType().toString() + "pos X: " + element.getPosition().getX());
             System.out.println("ELT type: " + element.getType().toString() + "pos Y: " + element.getPosition().getY());
         }
+        
         game.setParam(params.getMapWidth(), params.getMapHeight());
         game.refresh(world.listElement);
     }
