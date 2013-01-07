@@ -19,7 +19,7 @@ public class Shark extends WaterElement {
         super(pos, type);
         this.setType(type);
         this.setPos(pos);
-        this.setImg("/image/shark.png");
+        this.setImg("/image/shark100.png");
         this.r = new Random();
         this.sex = sex;
         this.world = world;
@@ -199,6 +199,19 @@ public class Shark extends WaterElement {
     @Override
     public void updateCounters() {
         this.eatCounter++;
+        double percent = ((double)params.getStarving_each()-(double)eatCounter)/(double)params.getStarving_each();
+        if(percent > 0.75) {
+            this.setImg("/image/shark100.png");
+        }
+        else if(percent > 0.5) {
+            this.setImg("/image/shark75.png");
+        }
+        else if(percent > 0.25) {
+            this.setImg("/image/shark50.png");
+        }
+        else {
+            this.setImg("/image/shark25.png");
+        }
     }
 
     public ElementType getElementType() {
