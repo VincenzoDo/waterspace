@@ -71,32 +71,10 @@ public class SpaceWorld extends AbstractWorld {
          return true;
      }
 
-	public void moveElements() {
-		throw new UnsupportedOperationException();
-	}
-
-	public void killPlanet() {
-		throw new UnsupportedOperationException();
-	}
-
-	public void occupyPlanet() {
-		throw new UnsupportedOperationException();
-	}
-
-	public void killAsteroid() {
-		throw new UnsupportedOperationException();
-	}
-
-	public void killAlien() {
-		throw new UnsupportedOperationException();
-	}
-
-	public void selectNextElement() {
-		throw new UnsupportedOperationException();
-	}
 
     @Override
     public void nextStep() {
+    	System.out.println("NEXTSTEP");
     	if(endgame){
             return;
         }
@@ -131,21 +109,66 @@ public class SpaceWorld extends AbstractWorld {
             return;
         }
 
-
-        ArrayList<WorldElement> deleteElement = new ArrayList<WorldElement>();
-        for (WorldElement worldElement : listElement) {
-             if(worldElement.getType() != ElementType.SPACE_BLACKHOLE){
-            	 worldElement.move(worldElement.getSpeed());
-            	//Collision astero avec trou noir
-            	 if(worldElement.getPosition().getX()==trouNoir.getX() && worldElement.getPosition().getY()==trouNoir.getY()){
-            		 deleteElement.add(worldElement);
-            	 }
-             }      	 
+        for(int i=0; i<listElement.size(); i++){
+        	WorldElement worldElement = listElement.get(i);
+            if(worldElement.getType() != ElementType.SPACE_BLACKHOLE){
+           	 worldElement.move(worldElement.getSpeed());
+           	//Collision avec trou noir
+           	 if(worldElement.getPosition().getX()==trouNoir.getX() && worldElement.getPosition().getY()==trouNoir.getY()){
+           		 listElement.remove(worldElement);
+           		 i=i-1;
+           	 }else{
+               	 for(int j=0; j<listElement.size(); j++){
+               		 WorldElement worldElement2 = listElement.get(j);
+               		 if(worldElement!=worldElement2){
+							// Asteroid avec autre ==> reste asteroide
+							if (worldElement.getType() == ElementType.SPACE_ASTEROID && worldElement.getPosition().getX()==worldElement2.getPosition().getX() && worldElement.getPosition().getY()==worldElement2.getPosition().getY()) {
+								listElement.remove(worldElement2);
+								System.out.println("Collision asteroide1");
+								i=i-1; j=j-1;
+							}else if(worldElement2.getType() == ElementType.SPACE_ASTEROID && worldElement.getPosition().getX()==worldElement2.getPosition().getX() && worldElement.getPosition().getY()==worldElement2.getPosition().getY()){
+								listElement.remove(worldElement);
+								i=i-1;
+								break;
+							}
+							// Planete avec marsien ==> reste marsien
+							else if (worldElement.getType() == ElementType.SPACE_MARTIAN && worldElement2.getType() == ElementType.SPACE_PLANET && worldElement.getPosition().getX()==worldElement2.getPosition().getX() && worldElement.getPosition().getY()==worldElement2.getPosition().getY()) {
+								listElement.remove(worldElement2);
+								i=i-1; j=j-1;
+							}
+							else if (worldElement2.getType() == ElementType.SPACE_MARTIAN && worldElement.getType() == ElementType.SPACE_PLANET && worldElement.getPosition().getX()==worldElement2.getPosition().getX() && worldElement.getPosition().getY()==worldElement2.getPosition().getY()) {
+								listElement.remove(worldElement); 
+								i=i-1;
+								break;
+							}
+							// Planete avec krypto ==> reste krypto
+							else if (worldElement.getType() == ElementType.SPACE_KRYPTONIAN && worldElement2.getType() == ElementType.SPACE_PLANET && worldElement.getPosition().getX()==worldElement2.getPosition().getX() && worldElement.getPosition().getY()==worldElement2.getPosition().getY()) {
+								listElement.remove(worldElement2); 
+								i=i-1; j=j-1;
+							}
+							else if (worldElement2.getType() == ElementType.SPACE_KRYPTONIAN && worldElement.getType() == ElementType.SPACE_PLANET && worldElement.getPosition().getX()==worldElement2.getPosition().getX() && worldElement.getPosition().getY()==worldElement2.getPosition().getY()) {
+								listElement.remove(worldElement); 
+								i=i-1;
+								break;
+							}
+							// Marsien avec krypto ==> reste rien (guerre)
+							else if (worldElement.getType() == ElementType.SPACE_KRYPTONIAN && worldElement2.getType() == ElementType.SPACE_MARTIAN && worldElement.getPosition().getX()==worldElement2.getPosition().getX() && worldElement.getPosition().getY()==worldElement2.getPosition().getY()) {
+								listElement.remove(worldElement); 
+								listElement.remove(worldElement2); 
+								i=i-1;
+								break;
+							}
+							else if (worldElement2.getType() == ElementType.SPACE_KRYPTONIAN && worldElement.getType() == ElementType.SPACE_MARTIAN && worldElement.getPosition().getX()==worldElement2.getPosition().getX() && worldElement.getPosition().getY()==worldElement2.getPosition().getY()) {
+								listElement.remove(worldElement);
+								listElement.remove(worldElement2);
+								i=i-1;
+								break;
+							}
+						}
+               	 }
+           	 } 
+            } 
         }
-        for (WorldElement worldElement : deleteElement) {
-        	listElement.remove(worldElement);
-        }
-
         return;
     }
 
