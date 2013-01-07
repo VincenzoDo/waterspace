@@ -82,7 +82,7 @@ public class Penguin extends WaterElement {
                     //do nothing
                 }
 
-                if (this.world.isCellFree(p.getX(), p.getY()) || this.world.isIce(p)) {
+                if (this.world.isCellFree(p.getX(), p.getY()) || this.world.isIceFree(p)) {
                     free = true;
                     System.out.println("Found clean pos = " + p.getX() + ":" + p.getY());
                 }
@@ -109,7 +109,7 @@ public class Penguin extends WaterElement {
                 //do nothing
             }
 
-            if (this.world.isCellFree(p.getX(), p.getY()) || this.world.isIce(p)) {
+            if (this.world.isCellFree(p.getX(), p.getY()) || this.world.isIceFree(p)) {
                 if (p != null) {
                     this.getPosition().setNewPosition(p.getX(), p.getY());
                 }
@@ -177,7 +177,7 @@ public class Penguin extends WaterElement {
             int x = r.nextInt(params.getWorld_width());
             int y = r.nextInt(params.getWorld_height());
             //check position
-            if (this.world.isCellFree(x, y) || this.world.isIce(new Position(x, y, null))) {
+            if (this.world.isCellFree(x, y) || this.world.isIceFree(new Position(x, y, null))) {
                 this.setPos(new Position(x, y, params));
                 found = true;
             }
