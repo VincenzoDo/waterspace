@@ -17,7 +17,7 @@ public abstract class WorldElement {
     private ElementType type;
     private AbstractWorld world;
     
-    Random r;
+    static private Random rand = new Random();
     private static final int LEFT = 0;
     private static final int RIGHT = 1;
     private static final int UP = 2;
@@ -58,7 +58,7 @@ public abstract class WorldElement {
         //Check if it's time to move
         if (speed != 0 && (tickNbr % speed) == 0) {
 
-            int direction = r.nextInt(4);
+            int direction = rand.nextInt(4);
 
             switch (direction) {
 
