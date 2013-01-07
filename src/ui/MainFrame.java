@@ -62,6 +62,7 @@ public class MainFrame extends javax.swing.JFrame {
         for (int x = 0; x < gridLab.length; x++) {
             for (int y = 0; y < gridLab[x].length; y++) {
                 gridLab[x][y].setOpaque(false);
+                gridLab[x][y].setIcon(null);
                 boolean found = false;
                 Position p = new Position(x,y,null);
                 for (WorldElement worldElement : elementList) {
@@ -70,18 +71,19 @@ public class MainFrame extends javax.swing.JFrame {
                             gridLab[x][y].setOpaque(true);
                             gridLab[x][y].setBackground(new Color(180, 216, 231));
                             //gridLab[x][y].setText("ICE");
+                            found = true;
                         } else{
                             ImageIcon image = new javax.swing.ImageIcon(getClass().getResource(worldElement.getImage()));
                             gridLab[x][y].setIcon(image);
                         }
-                        found = true;
+                        //found = true;
                     }
                 }
                 if (!found) {
                     
-                    gridLab[x][y].setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/empty.png")));
-                    //gridLab[x][y].setOpaque(true);
-                    //gridLab[x][y].setBackground(new Color(51,102,153));
+                    //gridLab[x][y].setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/empty.png")));
+                    gridLab[x][y].setOpaque(true);
+                    gridLab[x][y].setBackground(new Color(51,102,153));
                 }
             }
         }
