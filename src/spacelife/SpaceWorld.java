@@ -74,7 +74,6 @@ public class SpaceWorld extends AbstractWorld {
 
     @Override
     public void nextStep() {
-    	System.out.println("NEXTSTEP");
     	if(endgame){
             return;
         }
@@ -124,7 +123,6 @@ public class SpaceWorld extends AbstractWorld {
 							// Asteroid avec autre ==> reste asteroide
 							if (worldElement.getType() == ElementType.SPACE_ASTEROID && worldElement.getPosition().getX()==worldElement2.getPosition().getX() && worldElement.getPosition().getY()==worldElement2.getPosition().getY()) {
 								listElement.remove(worldElement2);
-								System.out.println("Collision asteroide1");
 								i=i-1; j=j-1;
 							}else if(worldElement2.getType() == ElementType.SPACE_ASTEROID && worldElement.getPosition().getX()==worldElement2.getPosition().getX() && worldElement.getPosition().getY()==worldElement2.getPosition().getY()){
 								listElement.remove(worldElement);
@@ -175,6 +173,6 @@ public class SpaceWorld extends AbstractWorld {
 	@Override
 	public boolean isEndGame() {
 		// TODO Auto-generated method stub
-		return false;
+		return endgame;
 	}
 }
