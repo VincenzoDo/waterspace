@@ -28,11 +28,6 @@ public class WaterWorld extends AbstractWorld {
     public void iniWorld(WaterFactory factory){
         this.factory = factory;
         
-        if(!factory.isWorld()){
-            System.out.println("Jfjdkslajflkéadsjfdklséa");
-            System.exit(10);
-        }
-        
         // create all elements and place in world
         ElementType typeList[] = ElementType.values();
         for (ElementType type : typeList) {
@@ -271,10 +266,6 @@ public class WaterWorld extends AbstractWorld {
         return params;
     }
 
-    public void setParams() {
-        this.params = params;
-    }
-
     public boolean isIce(Position p) {
         ArrayList<Ice> ice = new ArrayList();
         for (WorldElement creature : listElement) {
@@ -392,6 +383,7 @@ public class WaterWorld extends AbstractWorld {
         System.out.println("NewBornPosition = "+elem.getPosition().getX()+":"+elem.getPosition().getY());
     }
     
+    @Override
     public boolean isEndGame(){
         return endgame;
     }
