@@ -28,7 +28,7 @@ public class ParamsForms extends javax.swing.JFrame {
 
     
     private WorldManager wm;
-    private MainFrame gui;
+    private AbstractFrame gui;
     /**
      * Creates new form ParamsForms
      */
@@ -49,7 +49,7 @@ public class ParamsForms extends javax.swing.JFrame {
     JSpinner space_spin_nb_planets = new JSpinner();
     JSpinner space_spin_x_dimension = new JSpinner();
     
-    public ParamsForms(WorldManager wm, MainFrame gui) {
+    public ParamsForms(WorldManager wm, AbstractFrame gui) {
         getContentPane().setPreferredSize(new Dimension(350, 320));
         this.wm = wm;
         this.gui=gui;
@@ -273,7 +273,7 @@ public class ParamsForms extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_startGameActionPerformed
 
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify                     
     private javax.swing.JButton bt_startGame;
     private JTabbedPane tabbedPane;
     
