@@ -19,6 +19,7 @@ public class WorldManager {
     private ThreadSimulation simulation;
     private MainFrame game;
     private AbstractFactory factory;
+    private SimulParams params;
 
     private WorldManager() {
     }
@@ -62,6 +63,7 @@ public class WorldManager {
     }
 
     public void setParameters(SimulParams params){
+        this.params=params;
         simulation = new ThreadSimulation(this, 100);
         //WaterParams params = new WaterParams(world_width, world_height, nbOfShark, nbOfPenguin, nbOfIce, starving_each, sexCounter);
         if(params instanceof WaterParams){
@@ -98,5 +100,9 @@ public class WorldManager {
     
     public void endGame(){
         game.endGame();
+    }
+    
+    public SimulParams getParameters(){
+        return this.params;
     }
 }
