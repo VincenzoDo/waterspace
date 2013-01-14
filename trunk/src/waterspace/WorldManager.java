@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import spacelife.SpaceFactory;
 import spacelife.SpaceParams;
 import spacelife.SpaceWorld;
+import ui.AbstractFrame;
 import ui.Command;
 import ui.MainFrame;
 import waterworld.WaterFactory;
@@ -17,7 +18,7 @@ public class WorldManager {
     private static AbstractWorld world;
     private static WorldManager instance;
     private ThreadSimulation simulation;
-    private MainFrame game;
+    private AbstractFrame game;
     private AbstractFactory factory;
     private SimulParams params;
 
@@ -38,7 +39,7 @@ public class WorldManager {
 
         world.nextStep();
         
-        game.refresh(world.listElement);
+        game.getDisplay().refresh(world.listElement);
 
         //listCommand.add();
     }
@@ -54,7 +55,7 @@ public class WorldManager {
         WorldManager.world = world;
     }
 
-    public void setGUI(MainFrame game) {
+    public void setGUI(AbstractFrame game) {
         this.game = game;
     }
     
@@ -84,8 +85,8 @@ public class WorldManager {
             System.out.println("ELT type: " + element.getType().toString() + "pos Y: " + element.getPosition().getY());
         }
         
-        game.setParam(params.getMapWidth(), params.getMapHeight());
-        game.refresh(world.listElement);
+        game.setParams(params);
+        game.getDisplay().refresh(world.listElement);
     }
 
     public void runsim() {
@@ -102,7 +103,4 @@ public class WorldManager {
         game.endGame();
     }
     
-    public SimulParams getParameters(){
-        return this.params;
-    }
 }

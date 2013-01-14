@@ -12,6 +12,7 @@ import java.util.Iterator;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import waterspace.ElementType;
 import waterspace.Position;
@@ -26,9 +27,8 @@ public class MainFrame extends AbstractFrame {
        
     MainFrame(WorldManager wm) {
         super(wm);
-        initComponents();
         setSize(1024, 800);
-        this.panel_game = panel;
+        
         
     }
 
@@ -165,5 +165,15 @@ public class MainFrame extends AbstractFrame {
     
     public void displayEndofGame() {
         JOptionPane.showMessageDialog(panel_game,"End of game");
+    }
+
+    @Override
+    public void initFrame() {
+        initComponents();
+    }
+
+    @Override
+    public JPanel getGamePanel() {
+        return panel_game;
     }
 }

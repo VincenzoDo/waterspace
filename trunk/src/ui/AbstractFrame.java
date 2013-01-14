@@ -30,22 +30,31 @@ public abstract class AbstractFrame extends JFrame {
        this.wm=wm;
        cmdNextStep = new NextStep(wm);
        cmdRunSim = new RunSim(wm);
-       
-       
-       if(wm.getParameters().isText()){
+       panel = new JPanel();
+   }
+   
+   public void setParams(SimulParams params){
+       initFrame();
+       if(params.isText()){
            display = new DisplayText();
        } else {
            display = new DisplayGraphic();
        }
        
-       
-       display.setParameters(panel, wm.getParameters());
-       
+       display.setParameters(getGamePanel(), params);
    }
    
+   
+   public Display getDisplay(){
+       return display;
+   }
    
    public void endGame(){
         JOptionPane.showMessageDialog(null, "The game is finished!");
     }
     
+   public abstract void initFrame();
+   
+   public abstract JPanel getGamePanel();
+   
 }

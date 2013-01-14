@@ -120,4 +120,9 @@ public abstract class WorldElement {
         return id;
     }
     
+    @Override
+    public String toString(){
+        return type+" #"+id;
+    }
+    
 }
