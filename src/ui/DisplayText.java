@@ -19,16 +19,19 @@ import waterspace.WorldElement;
 public class DisplayText implements Display {
     
     private JTextArea tArea;
-
+    
     @Override
     public void refresh(ArrayList<WorldElement> elementList) {
+        tArea.append("-----------------------------------------------------\n");
+        tArea.append("#ID\tElement\t\t\tX:Y\n");
+        tArea.append("-----------------------------------------------------\n");
         for (WorldElement worldElement : elementList) {
-            tArea.append(worldElement.toString()+"\n");
+            tArea.append(worldElement.toString() + "\n");
         }
-        tArea.append("===================================================\n\n");
+        tArea.append("============================================\n\n\n");
         tArea.selectAll();
     }
-
+    
     @Override
     public void setParameters(JPanel panel, SimulParams params) {
         int nbrX = params.getMapHeight();
@@ -44,9 +47,8 @@ public class DisplayText implements Display {
         panel.add(tArea, BorderLayout.CENTER);
         
         
-              
         
-
+        
+        
     }
-    
 }
