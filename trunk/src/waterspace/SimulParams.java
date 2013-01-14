@@ -12,6 +12,7 @@ public abstract class SimulParams {
     
     private  int mapWidth;
     private  int mapHeight;
+    private boolean text;
     
     
     public SimulParams(int mapWidth, int mapHeight){
@@ -34,6 +35,11 @@ public abstract class SimulParams {
 
     public void setMapHeight(int mapHeight) {
         this.mapHeight = mapHeight;
+    }
+    
+    
+    public boolean isText(){
+        return text;
     }
     
     
