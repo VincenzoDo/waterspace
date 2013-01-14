@@ -6,6 +6,7 @@ package ui;
 
 import java.awt.BorderLayout;
 import java.util.ArrayList;
+import javax.swing.DropMode;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import waterspace.SimulParams;
@@ -21,12 +22,11 @@ public class DisplayText implements Display {
 
     @Override
     public void refresh(ArrayList<WorldElement> elementList) {
- 
-        
         for (WorldElement worldElement : elementList) {
-            tArea.append(worldElement.toString());
-            
+            tArea.append(worldElement.toString()+"\n");
         }
+        tArea.append("===================================================\n\n");
+        tArea.selectAll();
     }
 
     @Override
@@ -38,9 +38,10 @@ public class DisplayText implements Display {
         BorderLayout b = new BorderLayout();
         
         panel.setLayout(b);
-        tArea = new JTextArea("diuadiw");
-        tArea.append("JE NE SAIS PAS");
-        b.addLayoutComponent(tArea, BorderLayout.CENTER);
+        tArea = new JTextArea();
+        tArea.setEditable(false);
+        tArea.setHighlighter(null);
+        panel.add(tArea, BorderLayout.CENTER);
         
         
               

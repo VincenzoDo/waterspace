@@ -122,7 +122,12 @@ public abstract class WorldElement {
     
     @Override
     public String toString(){
-        return type+" #"+id;
+        String ret = "#"+id+"\t"+type;
+        for(int len = type.toString().length()/4; len < 5; len++){
+            ret += "\t";
+        }
+        ret += pos.getX()+":"+pos.getY();
+        return ret;
     }
     
 }
