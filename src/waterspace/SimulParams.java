@@ -12,7 +12,7 @@ public abstract class SimulParams {
     
     private  int mapWidth;
     private  int mapHeight;
-    private boolean text;
+    private boolean text=true;
     
     
     public SimulParams(int mapWidth, int mapHeight){
