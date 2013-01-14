@@ -12,11 +12,11 @@ public abstract class SimulParams {
     
     private  int mapWidth;
     private  int mapHeight;
-    private boolean text=true;
+    private boolean text=false;
     
     
     public SimulParams(int mapWidth, int mapHeight){
-        this.mapHeight=mapHeight;
+        this.mapWidth=mapWidth;
         this.mapHeight= mapHeight;
         
     }
