@@ -16,6 +16,8 @@ public abstract class WorldElement {
     private String img;
     private ElementType type;
     private AbstractWorld world;
+    private static int counter = 1;
+    private int id;
     
     static private Random rand = new Random();
     private static final int LEFT = 0;
@@ -43,6 +45,7 @@ public abstract class WorldElement {
         this.speed = speed;
         this.img = img;
         this.type = type;
+        this.id = counter++;
        // WorldManager.listElement.add(this);
     }
     
@@ -112,4 +115,9 @@ public abstract class WorldElement {
     public void setType(ElementType type) {
         this.type = type;
     }
+    
+    public int getId(){
+        return id;
+    }
+    
 }
