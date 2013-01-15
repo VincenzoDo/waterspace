@@ -60,8 +60,8 @@ public class DisplayGraphic implements Display {
 
     @Override
     public void setParameters(JPanel panel, SimulParams params) {
-        int nbrX = params.getMapHeight();
-        int nbrY = params.getMapWidth();
+        int nbrX = params.getMapWidth();
+        int nbrY = params.getMapHeight();
 
 
         GridLayout grid = new GridLayout(nbrX, nbrY);
