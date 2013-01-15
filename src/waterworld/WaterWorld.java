@@ -28,6 +28,18 @@ public class WaterWorld extends AbstractWorld {
     public void iniWorld(WaterFactory factory){
         this.factory = factory;
         
+        int nbrPenguin = 0;
+        int nbrShark = 0;
+        int totalPlace = params.getMapHeight()*params.getMapWidth();
+        
+        int maxPenguin = params.getNbOfElement(ElementType.WATER_PENGUIN);
+        int maxShark = params.getNbOfElement(ElementType.WATER_SHARK);
+        
+        if(maxPenguin + maxShark >= totalPlace){
+            maxPenguin = maxPenguin*totalPlace/(maxPenguin + maxShark);
+            maxShark = maxShark*totalPlace/(maxPenguin + maxShark);
+        }
+        
         System.out.println("Creating whale");
         WaterElement whale = (WaterElement) factory.createWhale();
         ((Whale) whale).initWhale(this, params);
@@ -43,27 +55,21 @@ public class WaterWorld extends AbstractWorld {
             int nbOfElement = params.getNbOfElement(type);
             for (int i = 0; i < nbOfElement; i++) {
                 WaterElement elem = null;
-                if (type == ElementType.WATER_ICE && iceCounter <= (params.getMapHeight()*params.getMapWidth())/2) {
+                if (type == ElementType.WATER_ICE && iceCounter < totalPlace/2) {
                     System.out.println("Creating ice");
                     iceCounter++;
                     elem = (WaterElement) factory.createIce();
                 }
-                if (type == ElementType.WATER_PENGUIN) {
+                if (type == ElementType.WATER_PENGUIN && nbrPenguin <= maxPenguin) {
                     System.out.println("Creating penguin");
+                    nbrPenguin ++;
                     elem = (WaterElement) factory.createPenguin();
                 }
-                if (type == ElementType.WATER_SHARK) {
+                if (type == ElementType.WATER_SHARK && nbrShark <= maxShark) {
                     System.out.println("Creating shark");
+                    nbrShark ++;
                     elem = (WaterElement) factory.createShark();
                 }
-                /*
-                if (type == ElementType.WATER_WHALE) {
-                    System.out.println("Creating whale");
-                    elem = (WaterElement) factory.createWhale();
-                    ((Whale) elem).initWhale(this, params);
-
-                }
-*/
                 
 
                 if(elem != null && elem.placeElement()){
