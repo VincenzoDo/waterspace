@@ -26,23 +26,23 @@ public class DisplayGraphic implements Display {
 
     @Override
     public void refresh(ArrayList<WorldElement> elementList) {
-        for (int x = 0; x < gridLab.length; x++) {
-            for (int y = 0; y < gridLab[x].length; y++) {
-                gridLab[x][y].setOpaque(false);
-                gridLab[x][y].setIcon(null);
-                gridLab[x][y].setHorizontalAlignment(SwingConstants.CENTER);
+        for (int y = 0; y < gridLab.length; y++) {
+            for (int x = 0; x < gridLab[y].length; x++) {
+                gridLab[y][x].setOpaque(false);
+                gridLab[y][x].setIcon(null);
+                gridLab[y][x].setHorizontalAlignment(SwingConstants.CENTER);
                 boolean found = false;
                 Position p = new Position(x, y, null);
                 for (WorldElement worldElement : elementList) {
                     if (worldElement.getPosition().equals(p)) {
                         if (worldElement.getType() == ElementType.WATER_ICE) {
-                            gridLab[x][y].setOpaque(true);
-                            gridLab[x][y].setBackground(new Color(180, 216, 231));
+                            gridLab[y][x].setOpaque(true);
+                            gridLab[y][x].setBackground(new Color(180, 216, 231));
                             //gridLab[x][y].setText("ICE");
                             found = true;
                         } else {
                             ImageIcon image = new javax.swing.ImageIcon(getClass().getResource(worldElement.getImage()));
-                            gridLab[x][y].setIcon(image);
+                            gridLab[y][x].setIcon(image);
                         }
                         //found = true;
                     }
@@ -50,8 +50,8 @@ public class DisplayGraphic implements Display {
                 if (!found) {
 
                     //gridLab[x][y].setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/empty.png")));
-                    gridLab[x][y].setOpaque(true);
-                    gridLab[x][y].setBackground(new Color(51, 102, 153));
+                    gridLab[y][x].setOpaque(true);
+                    gridLab[y][x].setBackground(new Color(51, 102, 153));
                 }
             }
         }
@@ -64,16 +64,16 @@ public class DisplayGraphic implements Display {
         int nbrY = params.getMapHeight();
 
 
-        GridLayout grid = new GridLayout(nbrX, nbrY);
+        GridLayout grid = new GridLayout(nbrY, nbrX);
         panel.setLayout(grid);
-        gridLab = new JLabel[nbrX][nbrY];
-        for (int x = 0; x < nbrX; x++) {
-            for (int y = 0; y < nbrY; y++) {
-                gridLab[x][y] = new JLabel();
+        gridLab = new JLabel[nbrY][nbrX];
+        for (int y = 0; y < nbrY; y++) {
+            for (int x = 0; x < nbrX; x++) {
+                gridLab[y][x] = new JLabel();
 
                 //gridLab[x][y].setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/empty.png")));
 
-                panel.add(gridLab[x][y]);
+                panel.add(gridLab[y][x]);
             }
         }
     }

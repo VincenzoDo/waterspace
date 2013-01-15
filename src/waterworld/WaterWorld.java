@@ -20,6 +20,8 @@ public class WaterWorld extends AbstractWorld {
     private boolean endgame = false;
 
     public WaterWorld(WaterParams params) {
+        System.out.println("New WORLD width="+params.getWorld_width()+" height="+params.getWorld_height());
+        System.out.println("New WORLD width="+params.getMapWidth()+" height="+params.getMapHeight());
         this.params = params;
         this.iceCounter = 0;
         this.r = new Random();
