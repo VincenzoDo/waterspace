@@ -31,10 +31,6 @@ public class WaterWorld extends AbstractWorld {
         System.out.println("Creating whale");
         WaterElement whale = (WaterElement) factory.createWhale();
         ((Whale) whale).initWhale(this, params);
-        if(whale == null){
-            System.out.println("??????????????");
-            System.exit(1);
-        }
         whale.placeElement();
         listElement.add(whale);
         // create all elements and place in world
@@ -47,7 +43,7 @@ public class WaterWorld extends AbstractWorld {
             int nbOfElement = params.getNbOfElement(type);
             for (int i = 0; i < nbOfElement; i++) {
                 WaterElement elem = null;
-                if (type == ElementType.WATER_ICE && iceCounter <= (params.getMapHeight()*params.getMapWidth()*100)/50) {
+                if (type == ElementType.WATER_ICE && iceCounter <= (params.getMapHeight()*params.getMapWidth())/2) {
                     System.out.println("Creating ice");
                     iceCounter++;
                     elem = (WaterElement) factory.createIce();
