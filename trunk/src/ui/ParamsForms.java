@@ -17,6 +17,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 
@@ -251,6 +252,11 @@ public class ParamsForms extends javax.swing.JFrame {
         
         
         //wm.setParameters(8,8, 4, 7,15,2, 2);
+        
+        if((Integer)x_dimension.getValue() <= 0 || (Integer)y_dimension.getValue() <= 0){
+            JOptionPane.showMessageDialog(this, "Please enter a higher value than 0 for X and Y...");
+            return;
+        }
         
         if(tabbedPane.getSelectedIndex() == 0){
             wm.setParameters(new WaterParams((Integer)x_dimension.getValue(), (Integer)y_dimension.getValue(), (Integer)n_sharks.getValue(), (Integer)n_penguin.getValue(), (Integer)n_ice.getValue(), (Integer)starving_each.getValue(), (Integer)r_period.getValue()));

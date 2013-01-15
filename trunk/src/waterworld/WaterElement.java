@@ -14,6 +14,8 @@ import waterspace.WorldElement;
  */
 public abstract class WaterElement extends WorldElement {
     
+    protected static final int NBR_POS_TRY = 20;
+    
     public WaterElement(Position pos, ElementType type){
         super(pos, 0, null, type);
 

@@ -230,7 +230,7 @@ public class Shark extends WaterElement {
                 this.setPos(new Position(x, y, params));
                 found = true;
             }
-            if(n >= 10){
+            if(n >= NBR_POS_TRY){
                 return false;
             }
             n++;

@@ -20,8 +20,6 @@ public class WaterWorld extends AbstractWorld {
     private boolean endgame = false;
 
     public WaterWorld(WaterParams params) {
-        System.out.println("New WORLD width="+params.getWorld_width()+" height="+params.getWorld_height());
-        System.out.println("New WORLD width="+params.getMapWidth()+" height="+params.getMapHeight());
         this.params = params;
         this.iceCounter = 0;
         this.r = new Random();
@@ -30,6 +28,15 @@ public class WaterWorld extends AbstractWorld {
     public void iniWorld(WaterFactory factory){
         this.factory = factory;
         
+        System.out.println("Creating whale");
+        WaterElement whale = (WaterElement) factory.createWhale();
+        ((Whale) whale).initWhale(this, params);
+        if(whale == null){
+            System.out.println("??????????????");
+            System.exit(1);
+        }
+        whale.placeElement();
+        listElement.add(whale);
         // create all elements and place in world
         ElementType typeList[] = ElementType.values();
         for (ElementType type : typeList) {
@@ -53,16 +60,17 @@ public class WaterWorld extends AbstractWorld {
                     System.out.println("Creating shark");
                     elem = (WaterElement) factory.createShark();
                 }
+                /*
                 if (type == ElementType.WATER_WHALE) {
                     System.out.println("Creating whale");
                     elem = (WaterElement) factory.createWhale();
                     ((Whale) elem).initWhale(this, params);
 
                 }
-
+*/
                 
 
-                if(elem.placeElement()){
+                if(elem != null && elem.placeElement()){
                     listElement.add(elem);
                 }
                 

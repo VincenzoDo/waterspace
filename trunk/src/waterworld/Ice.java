@@ -66,7 +66,7 @@ public class Ice extends WaterElement {
                 System.out.println("Adding ICE in pos = "+this.getPosition().getX()+":"+this.getPosition().getY());
                 found=true;
             }
-            if(n >= 10) {
+            if(n >= NBR_POS_TRY) {
                 return false;
             }
             n++;
