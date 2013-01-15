@@ -58,10 +58,12 @@ public class WaterWorld extends AbstractWorld {
 
                 }
 
-                listElement.add(elem);
+                
 
-                elem.placeElement();
-
+                if(elem.placeElement()){
+                    listElement.add(elem);
+                }
+                
             }
         }
 
@@ -87,6 +89,27 @@ public class WaterWorld extends AbstractWorld {
             return;
         }
         
+        /* 
+        //FOR DEBUG...
+        for (WorldElement elem1 : listElement) {
+            for (WorldElement elem2 : listElement) {
+                if(elem1.getId() == elem2.getId()) {
+                    continue;
+                }
+                if(elem1.getPosition().getX() == elem2.getPosition().getX() && elem1.getPosition().getY() == elem2.getPosition().getY()){
+                    if(elem1.getType() == ElementType.WATER_ICE && elem2.getType() == ElementType.WATER_PENGUIN ||
+                            elem1.getType() == ElementType.WATER_PENGUIN && elem2.getType() == ElementType.WATER_ICE){
+                        continue;
+                    }
+                    System.out.println("ELEM ON SAME PLACE");
+                    System.out.println("#"+elem1.getId()+" "+elem1.getType()+" // "+elem1.getPosition().getX()+":"+elem1.getPosition().getY());
+                    System.out.println("#"+elem2.getId()+" "+elem2.getType()+" // "+elem2.getPosition().getX()+":"+elem2.getPosition().getY());
+                    System.exit(1);
+                }
+                
+            }
+        }
+        */
         if(listElement.size() < 2){
             //stop game
             endgame = true;
@@ -254,7 +277,7 @@ public class WaterWorld extends AbstractWorld {
     public boolean isCellFree(int x, int y) {
         if (!listElement.isEmpty()) {
             for (WorldElement worldElement : listElement) {
-                if (worldElement.getPosition().equals(new Position(x, y, null)) && x <= params.getMapHeight() && y <= params.getMapWidth() && x >= 0 && y >= 0) {
+                if (worldElement.getPosition().equals(new Position(x, y, null))) {
                     return false;
                 }
             }
