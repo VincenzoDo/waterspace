@@ -9,8 +9,8 @@ public class SpaceParams extends SimulParams{
 	private int nbOfKryptonian;
 	private int nbOfMartian;
 	
-	public SpaceParams(int world_width,int world_height, int nbPlanet, int nbAsteroid, int nbKryptonian, int nbMartian){
-		 super(world_height,world_width);
+	public SpaceParams(int world_width,int world_height, int nbPlanet, int nbAsteroid, int nbKryptonian, int nbMartian, boolean text){
+		 super(world_height,world_width, text);
 		 this.setMapHeight(world_height);
 	     this.setMapWidth(world_width);
 	     this.nbOfAsteroid= nbAsteroid;
