@@ -15,6 +15,8 @@ import javax.swing.event.ChangeListener;
 import javax.swing.JTabbedPane;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+
+import javax.swing.JCheckBox;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -42,6 +44,7 @@ public class ParamsForms extends javax.swing.JFrame {
     JSpinner n_ice = new JSpinner();
     JSpinner r_period = new JSpinner();
     JSpinner starving_each = new JSpinner();
+    JCheckBox textBox = new JCheckBox();
     
     JSpinner space_spin_y_dimension = new JSpinner();
     JSpinner space_spin_nb_asteroids = new JSpinner();
@@ -49,6 +52,7 @@ public class ParamsForms extends javax.swing.JFrame {
     JSpinner space_spin_nb_kryptonian = new JSpinner();
     JSpinner space_spin_nb_planets = new JSpinner();
     JSpinner space_spin_x_dimension = new JSpinner();
+    JCheckBox space_textBox = new JCheckBox();
     
     public ParamsForms(WorldManager wm, AbstractFrame gui) {
         getContentPane().setPreferredSize(new Dimension(350, 320));
@@ -116,6 +120,11 @@ public class ParamsForms extends javax.swing.JFrame {
         label_5.setBounds(10, 229, 246, 14);
         waterPanel.add(label_5);
         
+        JLabel water_text = new JLabel();
+        water_text.setText("Mode textuel");
+        water_text.setBounds(10, 270, 280, 14);
+        waterPanel.add(water_text);
+        
         
         y_dimension.setModel(new SpinnerNumberModel(new Integer(8), null, null, new Integer(1)));
         y_dimension.setMinimumSize(new Dimension(40, 20));
@@ -166,6 +175,9 @@ public class ParamsForms extends javax.swing.JFrame {
         x_dimension.setBounds(292, 14, 43, 20);
         waterPanel.add(x_dimension);
         
+        textBox.setBounds(292, 270, 280, 14);
+        waterPanel.add(textBox);
+        
         JPanel spacePanel = new JPanel();
         spacePanel.setLayout(null);
         tabbedPane.addTab("Space world", null, spacePanel, null);
@@ -194,6 +206,12 @@ public class ParamsForms extends javax.swing.JFrame {
         lblNumberOfPlanets.setText("Number of Planets");
         lblNumberOfPlanets.setBounds(10, 191, 201, 14);
         spacePanel.add(lblNumberOfPlanets);
+        
+        JLabel text = new JLabel();
+        text.setText("Mode textuel");
+        text.setBounds(10, 230, 201, 14);
+        spacePanel.add(text);
+        
         space_spin_y_dimension.setModel(new SpinnerNumberModel(8, 6, 50, 1));
         
         
@@ -232,6 +250,10 @@ public class ParamsForms extends javax.swing.JFrame {
         space_spin_x_dimension.setMinimumSize(new Dimension(40, 20));
         space_spin_x_dimension.setBounds(292, 14, 43, 20);
         spacePanel.add(space_spin_x_dimension);
+        
+        space_textBox.setBounds(292, 230, 201, 14);
+        spacePanel.add(space_textBox);
+        
         getContentPane().add(bt_startGame, BorderLayout.SOUTH);
         
         
@@ -259,7 +281,7 @@ public class ParamsForms extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Please enter a higher value than 0 for X and Y...");
                 return;
             }
-            wm.setParameters(new WaterParams((Integer)x_dimension.getValue(), (Integer)y_dimension.getValue(), (Integer)n_sharks.getValue(), (Integer)n_penguin.getValue(), (Integer)n_ice.getValue(), (Integer)starving_each.getValue(), (Integer)r_period.getValue()));
+            wm.setParameters(new WaterParams((Integer)x_dimension.getValue(), (Integer)y_dimension.getValue(), (Integer)n_sharks.getValue(), (Integer)n_penguin.getValue(), (Integer)n_ice.getValue(), (Integer)starving_each.getValue(), (Integer)r_period.getValue(), textBox.isSelected()));
         }
         else{
             wm.setParameters(new SpaceParams(
@@ -268,7 +290,8 @@ public class ParamsForms extends javax.swing.JFrame {
                     (Integer)space_spin_nb_planets.getValue(),
                     (Integer)space_spin_nb_asteroids.getValue(),
                     (Integer)space_spin_nb_kryptonian.getValue(),
-                    (Integer)space_spin_nb_martian.getValue()
+                    (Integer)space_spin_nb_martian.getValue(),
+                    space_textBox.isSelected()
                     ));
         }
 
