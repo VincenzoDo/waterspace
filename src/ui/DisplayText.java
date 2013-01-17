@@ -5,6 +5,7 @@
 package ui;
 
 import java.awt.BorderLayout;
+import java.awt.Font;
 import java.util.ArrayList;
 import javax.swing.DropMode;
 import javax.swing.JPanel;
@@ -42,6 +43,7 @@ public class DisplayText implements Display {
         
         panel.setLayout(b);
         tArea = new JTextArea();
+        tArea.setFont(Font.getFont("Arial"));
         tArea.setEditable(false);
         tArea.setHighlighter(null);
         panel.add(tArea, BorderLayout.CENTER);
